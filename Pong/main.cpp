@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "pacMan.hpp"
+#include "bullet.hpp"
 
 int main()
 {
@@ -38,5 +39,4 @@ int main()
 	}
 
 	return 0;
-}
 }
