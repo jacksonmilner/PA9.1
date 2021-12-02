@@ -5,8 +5,9 @@
 //                a circle in the window.
 
 #include <SFML/Graphics.hpp>
-#include "pacMan.hpp"
-#include "bullet.hpp"
+#include "ship.h"
+#include "mainShip.h"
+#include "bullet.h"
 
 int main()
 {

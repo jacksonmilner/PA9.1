@@ -159,8 +159,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bullet.hpp" />
-    <ClInclude Include="pacMan.hpp" />
+    <ClInclude Include="bullet.h" />
+    <ClInclude Include="mainShip.h" />
+    <ClInclude Include="ship.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

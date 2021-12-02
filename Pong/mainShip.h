@@ -1,6 +1,5 @@
 #pragma once
-
-#include <SFML/Graphics.hpp>
+#include "ship.h"
 
 class spaceShip : public sf::CircleShape
 {

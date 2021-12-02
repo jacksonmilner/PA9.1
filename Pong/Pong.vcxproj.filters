@@ -20,10 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pacMan.hpp">
+    <ClInclude Include="bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bullet.hpp">
+    <ClInclude Include="mainShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
