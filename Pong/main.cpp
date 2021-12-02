@@ -5,7 +5,6 @@
 //                a circle in the window.
 
 #include <SFML/Graphics.hpp>
-
 #include "pacMan.hpp"
 
 int main()
