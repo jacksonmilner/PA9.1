@@ -6,13 +6,13 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "pacMan.hpp"
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
-	sf::CircleShape shape(100.f);
 
-	shape.setFillColor(sf::Color::Green);
-
+	spaceShip spaceship(25, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 55));
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -22,10 +22,22 @@ int main()
 				window.close();
 		}
 
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			spaceship.move(0.02, 0);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			spaceship.move(-0.02, 0);
+		}
+
+
 		window.clear();
-		window.draw(shape);
+		window.draw(spaceship);
 		window.display();
 	}
 
 	return 0;
+}
 }
