@@ -17,9 +17,7 @@ public:
 	virtual void shoot()
 	{
 		Bullet bullet1(20,sf::Color::Yellow,this->getPosition());
-		
 		bullet1.move(0, -0.50);
-		
 	}
 
 private:
