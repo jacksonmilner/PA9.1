@@ -12,10 +12,12 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
-
+	bool previousShootKeyState;
 	spaceShip spaceship(25, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
+	Bullet bullet1(20, sf::Color::Yellow, spaceship.getPosition());
 	while (window.isOpen())
 	{
+		window.clear();
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -23,22 +25,22 @@ int main()
 				window.close();
 		}
 
-
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && spaceship.isInbounds('r'))
 		{
-			spaceship.move(0.08, 0);
+			spaceship.move(0.11, 0);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && spaceship.isInbounds('l'))
 		{
-			spaceship.move(-0.08, 0);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		{
-			spaceship.shoot();
+			spaceship.move(-0.11, 0);
 		}
 
 
-		window.clear();
+		window.draw(bullet1);
+		bullet1.move(0, -0.05);
+		
+
+		
+		//window.clear();
 		window.draw(spaceship);
 		window.display();
 	}
