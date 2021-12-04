@@ -32,6 +32,10 @@ int main()
 		{
 			spaceship.move(-0.08, 0);
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			spaceship.shoot();
+		}
 
 
 		window.clear();
