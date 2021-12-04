@@ -160,7 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
-    <ClInclude Include="mainMenu.h" />
+    <ClInclude Include="runApp.h" />
     <ClInclude Include="mainShip.h" />
     <ClInclude Include="ship.h" />
   </ItemGroup>

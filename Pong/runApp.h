@@ -1,7 +1,7 @@
 #pragma once
 #include "mainShip.h"
 
-class Menu
+class RunApp
 {
 public:
 
