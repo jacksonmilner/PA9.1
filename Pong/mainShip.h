@@ -17,7 +17,6 @@ public:
 	void shoot()
 	{
 		Bullet bullet1(2,sf::Color::Yellow,this->getPosition());
-		
 		bullet1.move(0, -0.50);
 	}
 

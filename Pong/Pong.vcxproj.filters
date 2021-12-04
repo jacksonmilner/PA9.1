@@ -37,5 +37,20 @@
     <Image Include="Image.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="bug1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bug2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bug3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bug4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ship.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
