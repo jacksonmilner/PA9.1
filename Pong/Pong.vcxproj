@@ -160,8 +160,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="runApp.h" />
     <ClInclude Include="mainShip.h" />
     <ClInclude Include="ship.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bug1.png" />
+    <Image Include="bug2.png" />
+    <Image Include="bug3.png" />
+    <Image Include="bug4.png" />
+    <Image Include="Image.png" />
+    <Image Include="ship.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
