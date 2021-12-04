@@ -11,7 +11,21 @@ public:
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
 	}
-
+	bool isInbounds(char side);
 private:
 	// double mRadius;
 };
+
+bool spaceShip::isInbounds(char side)
+{
+	if (side == 'l' && this->getPosition().x > 0)
+	{
+		return true;
+	}
+	if (side == 'r' && this->getPosition().x + 50 < 500)
+	{
+		return true;
+	}
+
+	return false;
+}
