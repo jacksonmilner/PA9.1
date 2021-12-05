@@ -10,9 +10,10 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
 	bool previousShootKeyState;
 	spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
+	spaceShip bug1(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	
 	while (window.isOpen())
 	{
@@ -39,7 +40,7 @@ int main()
 			while (bullet1.isInbounds('u'))
 			{
 				window.clear();
-				bullet1.move(0, -0.50);
+				bullet1.move(0, -0.4);
 				window.draw(bullet1);
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && spaceship.isInbounds('r'))
 				{
