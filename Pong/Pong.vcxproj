@@ -162,7 +162,6 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="runApp.h" />
     <ClInclude Include="mainShip.h" />
-    <ClInclude Include="ship.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bug1.png" />

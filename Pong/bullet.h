@@ -12,7 +12,18 @@ public:
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
 	}
+	bool isInbounds(char side);
 
 private:
 	// double mRadius;
 };
+
+bool Bullet::isInbounds(char side)
+{
+	if (side == 'u' && this->getPosition().y > 0)
+	{
+		return true;
+	}
+
+	return false;
+}

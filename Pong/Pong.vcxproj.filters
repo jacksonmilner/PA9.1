@@ -26,9 +26,6 @@
     <ClInclude Include="mainShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="runApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
