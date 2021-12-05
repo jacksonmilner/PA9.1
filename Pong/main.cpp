@@ -14,7 +14,6 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 	bool previousShootKeyState;
 	spaceShip spaceship(25, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
-	Bullet bullet1(20, sf::Color::Yellow, spaceship.getPosition());
 	while (window.isOpen())
 	{
 		window.clear();
@@ -35,15 +34,15 @@ int main()
 		}
 
 
+		Bullet bullet1(20, sf::Color::Yellow, spaceship.getPosition());
 		window.draw(bullet1);
 		bullet1.move(0, -0.05);
-		
 
-		
+
+
 		//window.clear();
 		window.draw(spaceship);
 		window.display();
-	}
 
 	return 0;
 }
