@@ -1,14 +1,15 @@
 #pragma once
 #include "mainShip.h"
 
-class Alien : public spaceShip
+class Alien : public sf::CircleShape
 {
 public:
 	Alien(const double& newRadius, const sf::Color& newColor,
-		const sf::Vector2f& newPosition, int type) : spaceShip(newRadius, newColor, newPosition)
+		const sf::Vector2f& newPosition, const int& newtype) : sf::CircleShape(newRadius)
 	{
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
+		type = newtype;
 		setHP();
 	}
 	void setHP();
