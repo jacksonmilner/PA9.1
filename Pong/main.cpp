@@ -7,6 +7,8 @@
 #include <SFML/Graphics.hpp>
 #include "mainShip.h"
 #include "bullet.h"
+#include <math.h>
+#define Pi 3.14159265
 
 int main()
 {
@@ -22,6 +24,8 @@ int main()
 	
 	while (window.isOpen())
 	{
+		double x = 2;
+		double y = sin(x);
 		//window.clear();
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -56,6 +60,21 @@ int main()
 					spaceship.move(-0.11, 0);
 				}
 				window.draw(spaceship);
+				
+				if (bug1.getPosition().x != 300)
+				{
+					int tempx = bug1.getPosition().x;
+					int tempy = bug1.getPosition().y;
+					sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
+
+					bug1.move(.08 * y, .08 * y);
+
+				}
+				if (bug1.getPosition().x == 300)
+				{
+
+				}
+				window.draw(bug1);
 				window.display();
 			}
 			
@@ -66,17 +85,19 @@ int main()
 			int tempy = bug1.getPosition().y;
 			sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
 
-			bug1.move(.05, .08);
+			bug1.move(.08 * y, .08 * y);
 
 		}
 		if (bug1.getPosition().x == 300)
 		{
 
 		}
-		window.clear();
+		
 		window.draw(spaceship);
 		window.draw(bug1);
 		window.display();
+		window.clear();
+		x += Pi / 1000000;
 	}
 
 	return 0;
