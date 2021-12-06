@@ -9,5 +9,5 @@ class RunApp
 public:
 
 private:
-
+	int score;
 };

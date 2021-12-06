@@ -22,7 +22,7 @@ int main()
 	spaceShip bug4(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	spaceShip bug5(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
-	Bullet bullet1(5, sf::Color::Yellow, spaceship.getPosition());
+	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600,600));
 
 	double x = (Pi/2); //bug moving
 	
@@ -47,16 +47,16 @@ int main()
 			spaceship.move(-0.11, 0);
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.getPosition() == spaceship.getPosition())
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.getPosition() == sf::Vector2f(600,600))
 		{
 			bullet1.setPosition(spaceship.getPosition());
 			bullet1.move(0, -0.4);
 		}
 		if (!bullet1.isInbounds('u'))
 		{
-			bullet1.setPosition(spaceship.getPosition());
+			bullet1.setPosition(sf::Vector2f(600,600));
 		}
-		if (bullet1.getPosition() != spaceship.getPosition())
+		if (bullet1.getPosition() != sf::Vector2f(600, 600))
 		{
 			bullet1.move(0, -0.4);
 		}
@@ -67,7 +67,6 @@ int main()
 				bug1.hit();
 			}
 		}
-
 		if (bug1.getPosition().x != 300)
 		{
 			int tempx = bug1.getPosition().x;
