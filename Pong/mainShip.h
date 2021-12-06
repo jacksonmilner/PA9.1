@@ -29,7 +29,7 @@ bool spaceShip::isInbounds(char side)
 	{
 		return true;
 	}
-	if (side == 'r' && this->getPosition().x + 50 < 500)
+	if (side == 'r' && this->getPosition().x + 30 < 500)
 	{
 		return true;
 	}

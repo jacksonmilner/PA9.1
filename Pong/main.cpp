@@ -60,6 +60,19 @@ int main()
 			}
 			
 		}
+		if (bug1.getPosition().x != 300)
+		{
+			int tempx = bug1.getPosition().x;
+			int tempy = bug1.getPosition().y;
+			sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
+
+			bug1.move(.05, .08);
+
+		}
+		if (bug1.getPosition().x == 300)
+		{
+
+		}
 		window.clear();
 		window.draw(spaceship);
 		window.draw(bug1);

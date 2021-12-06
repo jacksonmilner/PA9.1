@@ -159,6 +159,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alien.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="runApp.h" />
     <ClInclude Include="mainShip.h" />
