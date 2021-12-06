@@ -29,6 +29,9 @@
     <ClInclude Include="runApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Alien.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image.png">
