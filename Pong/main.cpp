@@ -22,11 +22,12 @@ int main()
 	spaceShip bug4(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	spaceShip bug5(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
+	double x = (Pi/2);
 	
 	while (window.isOpen())
 	{
-		double x = 2;
-		double y = sin(x);
+		double z = cos((x / 1000) * Pi);
+		double y = sin((x / 1000) * Pi);
 		//window.clear();
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -76,7 +77,7 @@ int main()
 					int tempy = bug1.getPosition().y;
 					sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
 
-					bug1.move(.08 * y, .08 * y);
+					bug1.move(0.5*z, 0.5*y);
 
 				}
 				if (bug1.getPosition().x == 300)
@@ -86,6 +87,7 @@ int main()
 				if (bug1.getHP() == 1)
 					window.draw(bug1);
 				window.display();
+				x++;
 			}
 			
 		}
@@ -95,7 +97,7 @@ int main()
 			int tempy = bug1.getPosition().y;
 			sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
 
-			bug1.move(.08 * y, .08 * y);
+			bug1.move(0.5*z, 0.5*y);
 
 		}
 		if (bug1.getPosition().x == 300)
@@ -108,7 +110,7 @@ int main()
 			window.draw(bug1);
 		window.display();
 		window.clear();
-		x += Pi / 1000000;
+		x++;
 	}
 
 	return 0;
