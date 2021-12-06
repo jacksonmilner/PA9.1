@@ -10,6 +10,7 @@
 #include "bullet.h"
 #include <math.h>
 #define Pi 3.14159265
+#include "runApp.h"
 
 int main()
 {
@@ -24,6 +25,7 @@ int main()
 	spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	double x = (Pi/2); //bug moving
 	
+
 	while (window.isOpen())
 	{
 		double z = cos((x / 1000) * Pi); //bug moving
