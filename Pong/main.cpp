@@ -22,6 +22,8 @@ int main()
 	spaceShip bug4(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	spaceShip bug5(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
+	Bullet bullet1(5, sf::Color::Yellow, spaceship.getPosition());
+
 	double x = (Pi/2); //bug moving
 	
 	while (window.isOpen())
@@ -45,52 +47,27 @@ int main()
 			spaceship.move(-0.11, 0);
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.getPosition() == spaceship.getPosition())
 		{
-			Bullet bullet1(5, sf::Color::Yellow, spaceship.getPosition());
-			while (bullet1.isInbounds('u'))
-			{
-				window.clear();
-				bullet1.move(0, -0.4);
-				window.draw(bullet1);
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && spaceship.isInbounds('r'))
-				{
-					spaceship.move(0.11, 0);
-				}
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && spaceship.isInbounds('l'))
-				{
-					spaceship.move(-0.11, 0);
-				}
-				window.draw(spaceship);
-
-				if (bug1.getGlobalBounds().intersects(bullet1.getGlobalBounds()))
-				{
-					if (bug1.getHP() == 1)
-					{
-						bug1.hit();
-					}
-				}
-				
-				if (bug1.getPosition().x != 300)
-				{
-					int tempx = bug1.getPosition().x;
-					int tempy = bug1.getPosition().y;
-					sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
-
-					bug1.move(0.5*z, 0.5*y); //bug moving
-
-				}
-				if (bug1.getPosition().x == 300)
-				{
-
-				}
-				if (bug1.getHP() == 1)
-					window.draw(bug1);
-				window.display();
-				x++; //bug moving
-			}
-			
+			bullet1.setPosition(spaceship.getPosition());
+			bullet1.move(0, -0.4);
 		}
+		if (!bullet1.isInbounds('u'))
+		{
+			bullet1.setPosition(spaceship.getPosition());
+		}
+		if (bullet1.getPosition() != spaceship.getPosition())
+		{
+			bullet1.move(0, -0.4);
+		}
+		if (bug1.getGlobalBounds().intersects(bullet1.getGlobalBounds()))
+		{
+			if (bug1.getHP() == 1)
+			{
+				bug1.hit();
+			}
+		}
+
 		if (bug1.getPosition().x != 300)
 		{
 			int tempx = bug1.getPosition().x;
@@ -106,8 +83,9 @@ int main()
 		}
 		
 		window.draw(spaceship);
-		if (bug1.getHP() == 1)
+		if (bug1.getHP() != 0)
 			window.draw(bug1);
+		window.draw(bullet1);
 		window.display();
 		window.clear();
 		x++; //bug moving
