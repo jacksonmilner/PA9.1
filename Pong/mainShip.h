@@ -6,8 +6,7 @@ class spaceShip : public sf::CircleShape
 {
 public:
 	spaceShip(const double& newRadius, const sf::Color& newColor,
-		const sf::Vector2f& newPosition) :
-		sf::CircleShape(newRadius)
+		const sf::Vector2f& newPosition) : sf::CircleShape(newRadius)
 	{
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
@@ -29,7 +28,7 @@ bool spaceShip::isInbounds(char side)
 	{
 		return true;
 	}
-	if (side == 'r' && this->getPosition().x + 50 < 500)
+	if (side == 'r' && this->getPosition().x + 30 < 500)
 	{
 		return true;
 	}

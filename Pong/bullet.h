@@ -1,7 +1,11 @@
 #pragma once
-
+#define PLAYER_BULLET true
+#define ENEMY_BULLET false
+#define TYPE1 1
+#define TYPE2 2
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
+#include <time.h>
 class Bullet : public sf::CircleShape
 {
 public:
@@ -16,6 +20,7 @@ public:
 
 private:
 	// double mRadius;
+	char bullet_type;
 };
 
 bool Bullet::isInbounds(char side)

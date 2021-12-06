@@ -160,6 +160,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alien.h" />
     <ClInclude Include="andy.h" />
     <ClInclude Include="bug2.h" />
     <ClInclude Include="bullet.h" />
