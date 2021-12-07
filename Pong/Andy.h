@@ -4,7 +4,7 @@ class Andy : public Alien
 {
 public:
 	Andy(const double& newRadius, const sf::Color& newColor,
-		const sf::Vector2f& newPosition, const int& type = 3) : Alien(newRadius, sf::Color::White, newPosition, type)
+		const sf::Vector2f& newPosition, const int& type = 25) : Alien(newRadius, sf::Color::White, newPosition, type)
 	{
 		healthBar.setFillColor(sf::Color::Red);
 		healthBar.setPosition(sf::Vector2f(0, 10));
