@@ -10,17 +10,21 @@ class Bullet : public sf::CircleShape
 {
 public:
 	Bullet(const double& newRadius, const sf::Color& newColor,
-		const sf::Vector2f& newPosition) :
+		const sf::Vector2f& newPosition, int newhp = 1) :
 		sf::CircleShape(newRadius)
 	{
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
+		hp = newhp;
 	}
 	bool isInbounds(char side);
+	int getHP();
+	void hit();
 
 private:
 	// double mRadius;
 	char bullet_type;
+	int hp;
 };
 
 bool Bullet::isInbounds(char side)
@@ -31,4 +35,22 @@ bool Bullet::isInbounds(char side)
 	}
 
 	return false;
+}
+
+int Bullet::getHP()
+{
+	return hp;
+}
+
+void Bullet::hit()
+{
+	if (hp != 0)
+	{
+		hp--;
+	}
+	else
+	{
+		hp++;
+	}
+
 }
