@@ -14,16 +14,19 @@
 
 int main()
 {
+	float movex = 0;
+	float movey = 0;
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 	bool previousShootKeyState;
 	spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Alien bug1(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500), 1);
-	spaceShip bug2(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
-	spaceShip bug3(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
-	spaceShip bug4(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
-	spaceShip bug5(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
-	spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
+	//spaceShip bug2(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
+	//spaceShip bug3(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
+	//spaceShip bug4(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
+	//spaceShip bug5(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
+	//spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600,600));
+	Bullet bullet2(5, sf::Color::Yellow, sf::Vector2f(-600,-600));
 
 	int getsize = window.getSize().x / 14;
 	int get13 = 13;
@@ -32,7 +35,7 @@ int main()
 	int directionalienx = -1;
 	int directionenemyx = -1;
 
-	Alien bug1(10, sf::Color::Blue, sf::Vector2f((0) + getsize, window.getSize().y - 400), 1);
+	//Alien bug1(10, sf::Color::Blue, sf::Vector2f((0) + getsize, window.getSize().y - 400), 1);
 	Alien bug2(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 400), 1);
 	Alien bug3(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 400), 1);
 	Alien bug4(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 400), 1);
@@ -127,6 +130,7 @@ int main()
 				bug1.hit();
 			}
 		}
+		
 		if (bug1.getPosition().x != 300)
 		{
 			int tempx = bug1.getPosition().x;
@@ -140,7 +144,54 @@ int main()
 		{
 
 		}
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//float tempbugx = bug1.getPosition().x;
+		//float tempbugy = bug1.getPosition().y;
+		//float tempssx = spaceship.getPosition().x;
+		//float tempssy = spaceship.getPosition().y;
+
+		//float xval = tempssx - tempbugx;
+		//float yval = tempssy - tempbugy;
+
+		//float normal = sqrt(pow(xval,2) + pow(yval,2));
+
+		//float movex = xval / normal;
+		//float movey = yval / normal;
 		
+		
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && bullet2.getPosition() == sf::Vector2f(-600, -600))
+		{
+			float tempbugx = bug1.getPosition().x;
+			float tempbugy = bug1.getPosition().y;
+			float tempssx = spaceship.getPosition().x+12.5;
+			float tempssy = spaceship.getPosition().y+12.5;
+
+			float xval = tempssx - tempbugx;
+			float yval = tempssy - tempbugy;
+
+			float normal = sqrt(pow(xval, 2) + pow(yval, 2));
+
+			movex = xval / normal;
+			movey = yval / normal;
+			bullet2.setPosition(bug1.getPosition());
+			bullet2.move(0.05*movex, 0.05*movey);
+		}
+		if (!bullet2.isInbounds('d'))
+		{
+			bullet2.setPosition(sf::Vector2f(-600, -600));
+		}
+
+		if (bullet2.getPosition() != sf::Vector2f(-600, -600))
+		{
+			bullet2.move(0.05*movex, 0.05*movey);
+		}
+		if (bullet2.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+		{
+			//player health reduced by 1
+		}
+
+		window.draw(bullet2);
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		window.draw(spaceship);
 		if (bug1.getHP() != 0)
 			window.draw(bug1);
@@ -149,6 +200,5 @@ int main()
 		window.clear();
 		x++; //bug moving
 	}
-
 	return 0;
 }
