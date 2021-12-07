@@ -33,6 +33,14 @@ bool Bullet::isInbounds(char side)
 	{
 		return true;
 	}
+	if (side == 'd' && this->getPosition().y < 500)
+	{
+		return true;
+	}
+	if (side == 'r' && this->getPosition().x < 550)
+	{
+		return true;
+	}
 
 	return false;
 }

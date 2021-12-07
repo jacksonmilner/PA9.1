@@ -16,7 +16,12 @@ public:
 
 	void setHP();
 	int getHP();
+<<<<<<< HEAD
 	bool hit(Bullet);
+=======
+	void hit();
+	
+>>>>>>> ac6596904cbefee900f37413a32686e67a237274
 private:
 	int type;
 	int hp;
