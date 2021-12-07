@@ -66,9 +66,9 @@ int Alien::getHP()
 	return hp;
 }
 
-bool Alien::hit(Bullet& shot)
+bool Alien::hit(Bullet shot)
 {
-	if (this->getGlobalBounds().intersects(shot.getGlobalBounds()) && hp > 0)
+	if (this->getGlobalBounds().intersects(shot.getGlobalBounds()) && hp != 0)
 	{
 		hp--;
 		return true;

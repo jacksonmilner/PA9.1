@@ -282,14 +282,10 @@ int main()
 		{
 			bullet1.move(0, -0.4);
 		}
-		if (bug1.getGlobalBounds().intersects(bullet1.getGlobalBounds()))
+		if (bug1.hit(bullet1))
 		{
-			if (bug1.getHP() == 1)
-			{
-				bug1.hit();
-			}
+			bullet1.setPosition(sf::Vector2f(600, 600));
 		}
-		
 		if (bug1.getPosition().x != 300)
 		{
 			int tempx = bug1.getPosition().x;
@@ -299,87 +295,12 @@ int main()
 			bug1.move(0.05*z, 0.05*y); //bug moving
 
 		}
-		if (bug1.getPosition().x == 300)
+		if (boss.hit(bullet1))
 		{
-
+			boss.updateHealthBar();
 		}
-		
-		
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//float tempbugx = bug1.getPosition().x;
-		//float tempbugy = bug1.getPosition().y;
-		//float tempssx = spaceship.getPosition().x+12.5;
-		//float tempssy = spaceship.getPosition().y+12.5;
-
-		//float xval = tempssx - tempbugx;
-		//float yval = tempssy - tempbugy;
-
-		//float normal = sqrt(pow(xval,2) + pow(yval,2));
-
-		//float movex = xval / normal;
-		//float movey = yval / normal;
-		
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && bullet2.getPosition() == sf::Vector2f(-600, -600))
+		if (bug1.getHP() <= 0 && boss.getHP() > 0)
 		{
-			float tempbugx = bug1.getPosition().x;
-			float tempbugy = bug1.getPosition().y;
-			float tempssx = spaceship.getPosition().x+12.5;
-			float tempssy = spaceship.getPosition().y+12.5;
-
-			float xval = tempssx - tempbugx;
-			float yval = tempssy - tempbugy;
-
-			float normal = sqrt(pow(xval, 2) + pow(yval, 2));
-
-			movex = xval / normal;
-			movey = yval / normal;
-			bullet2.setPosition(bug1.getPosition());
-			bullet2.move(0.05*movex, 0.05*movey);
-		}
-		if (!bullet2.isInbounds('d'))
-		{
-			bullet2.setPosition(sf::Vector2f(-600, -600));
-		}
-
-		if (bullet2.getPosition() != sf::Vector2f(-600, -600))
-		{
-			bullet2.move(0.05*movex, 0.05*movey);
-		}
-		if (bullet2.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
-		{
-			//player health reduced by 1
-		}
-
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && bullet3.getPosition() == sf::Vector2f(-600, -600))
-		{
-			bullet3.setPosition(bug1.getPosition());
-			bullet3.move(0, 0.05);
-		}
-		if (!bullet3.isInbounds('d'))
-		{
-			bullet3.setPosition(sf::Vector2f(-600, -600));
-		}
-
-		if (bullet3.getPosition() != sf::Vector2f(-600, -600))
-		{
-			bullet3.move(0, 0.05);
-		}
-		if (bullet3.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
-		{
-			//player health reduced by 1
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && bullet4.getPosition() == sf::Vector2f(-600, -600))
-		{
-			bullet4.setPosition(bug1.getPosition());
-			bullet4.move(0, 0.05);
-		}
-		if (!bullet4.isInbounds('d'))
-		{
-			bullet4.setPosition(sf::Vector2f(-600, -600));
-		}
 
 		if (bullet4.getPosition() != sf::Vector2f(-600, -600))
 		{
@@ -412,13 +333,6 @@ int main()
 			lhand_moving_right = 0;
 		}
 		
-
-
-		window.draw(lhand);
-		window.draw(bullet4);
-		window.draw(bullet3);
-		window.draw(bullet2);
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		window.draw(spaceship);
 		if (bug1.getHP() != 0)
 			window.draw(bug1);
