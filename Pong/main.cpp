@@ -14,12 +14,17 @@
 
 int main()
 {
+	int lhand_moving_right = 1;
 	float movex = 0;
 	float movey = 0;
+	Bullet lhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
+	Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
+
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 	bool previousShootKeyState;
 	spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Alien bug1(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500), 1);
+	
 	//spaceShip bug2(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	//spaceShip bug3(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	//spaceShip bug4(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
@@ -29,7 +34,7 @@ int main()
 	Bullet bullet2(5, sf::Color::Yellow, sf::Vector2f(-600,-600));
 	Bullet bullet3(5, sf::Color::Yellow, sf::Vector2f(-600, -600));
 	Bullet bullet4(5, sf::Color::Yellow, sf::Vector2f(-600, -600));
-
+	
 	int getsize = window.getSize().x / 14;
 	int get13 = 13;
 	int directionbugx = -1;
@@ -232,7 +237,32 @@ int main()
 		{
 			//player health reduced by 1
 		}
+		 //ANDYS LEFT HAND
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && lhand.getPosition() == sf::Vector2f(-600, -600))
+		{
+			lhand.setPosition(sf::Vector2f(-10,spaceship.getPosition().y));
+			lhand.move(0.06, 0);
+		}
+		if (!lhand.isInbounds('r') || lhand.getPosition().x < -100)
+		{
+			lhand.setPosition(sf::Vector2f(-600, -600));
+			lhand_moving_right = 1;
+		}
+		if (lhand.getPosition() != sf::Vector2f(-600, -600))
+		{
+			if(lhand_moving_right == 1)
+				lhand.move(0.06, 0);
+			else
+				lhand.move(-0.06,0);
+		}
+		if (lhand.getPosition().x > 280)
+		{
+			lhand_moving_right = 0;
+		}
+		
 
+
+		window.draw(lhand);
 		window.draw(bullet4);
 		window.draw(bullet3);
 		window.draw(bullet2);
