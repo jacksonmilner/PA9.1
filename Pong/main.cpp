@@ -28,8 +28,8 @@ int main()
 	
 	while (window.isOpen())
 	{
-		double z = cos((x / 1000) * Pi); //bug moving
-		double y = sin((x / 1000) * Pi); //bug moving
+		double z = 10* cos((x / 1000) * Pi); //bug moving
+		double y = 10* sin((x / 1000) * Pi); //bug moving
 		//window.clear();
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -73,7 +73,7 @@ int main()
 			int tempy = bug1.getPosition().y;
 			sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
 
-			bug1.move(0.5*z, 0.5*y); //bug moving
+			bug1.move(0.05*z, 0.05*y); //bug moving
 
 		}
 		if (bug1.getPosition().x == 300)
