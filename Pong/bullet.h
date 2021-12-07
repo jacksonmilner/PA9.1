@@ -19,11 +19,10 @@ public:
 	}
 	bool isInbounds(char side);
 	int getHP();
-	void hit();
 
 private:
 	// double mRadius;
-	char bullet_type;
+	//char bullet_type;
 	int hp;
 };
 
@@ -48,17 +47,4 @@ bool Bullet::isInbounds(char side)
 int Bullet::getHP()
 {
 	return hp;
-}
-
-void Bullet::hit()
-{
-	if (hp != 0)
-	{
-		hp--;
-	}
-	else
-	{
-		hp++;
-	}
-
 }

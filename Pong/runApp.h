@@ -5,6 +5,7 @@
 #include "bullet.h"
 #include "mainShip.h"
 #include "Alien.h"
+#include "Andy.h"
 
 using std::vector;
 
@@ -39,6 +40,7 @@ void RunApp::run_app()
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 	spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
+	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 25);
 
 	bool previousShootKeyState;
 	int getsize = (window.getSize().x - 240) / 12;
@@ -46,6 +48,8 @@ void RunApp::run_app()
 	int x2 = -1;
 	int x3 = -1;
 	int x4 = -1;
+	int aliensdead = 0;
+	bool bosstime = false;
 
 	int x = window.getSize().x / 14;
 	for (int j = 0; j < 12; j++)
@@ -102,11 +106,7 @@ void RunApp::run_app()
 		if (!alienlist[47].isInbounds('r'))
 			x4 *= -1;
 
-		for (int i = 0; i <= alienlist.size() - 1; i++)
-		{
-			if (alienlist[i].getHP() != 0)
-				window.draw(alienlist[i]);
-		}
+		
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.getPosition() == sf::Vector2f(600, 600))
 		{
@@ -128,7 +128,21 @@ void RunApp::run_app()
 				bullet1.setPosition(sf::Vector2f(600, 600));
 			}
 		}
-
+		
+		for (int i = 0; i < alienlist.size() - 1; i++)
+		{
+			if (alienlist[i].getHP() == 0)
+				aliensdead++;
+		}
+		if (aliensdead == 48)
+		{
+			window.draw(andy);
+		}
+		for (int i = 0; i <= alienlist.size() - 1; i++)
+		{
+			if (alienlist[i].getHP() != 0)
+				window.draw(alienlist[i]);
+		}
 		window.draw(bullet1);
 		window.draw(spaceship);
 		window.display();
