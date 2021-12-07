@@ -27,6 +27,8 @@ int main()
 	//spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600,600));
 	Bullet bullet2(5, sf::Color::Yellow, sf::Vector2f(-600,-600));
+	Bullet bullet3(5, sf::Color::Yellow, sf::Vector2f(-600, -600));
+	Bullet bullet4(5, sf::Color::Yellow, sf::Vector2f(-600, -600));
 
 	int getsize = window.getSize().x / 14;
 	int get13 = 13;
@@ -144,11 +146,13 @@ int main()
 		{
 
 		}
+		
+		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//float tempbugx = bug1.getPosition().x;
 		//float tempbugy = bug1.getPosition().y;
-		//float tempssx = spaceship.getPosition().x;
-		//float tempssy = spaceship.getPosition().y;
+		//float tempssx = spaceship.getPosition().x+12.5;
+		//float tempssy = spaceship.getPosition().y+12.5;
 
 		//float xval = tempssx - tempbugx;
 		//float yval = tempssy - tempbugy;
@@ -190,6 +194,47 @@ int main()
 			//player health reduced by 1
 		}
 
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && bullet3.getPosition() == sf::Vector2f(-600, -600))
+		{
+			bullet3.setPosition(bug1.getPosition());
+			bullet3.move(0, 0.05);
+		}
+		if (!bullet3.isInbounds('d'))
+		{
+			bullet3.setPosition(sf::Vector2f(-600, -600));
+		}
+
+		if (bullet3.getPosition() != sf::Vector2f(-600, -600))
+		{
+			bullet3.move(0, 0.05);
+		}
+		if (bullet3.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+		{
+			//player health reduced by 1
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && bullet4.getPosition() == sf::Vector2f(-600, -600))
+		{
+			bullet4.setPosition(bug1.getPosition());
+			bullet4.move(0, 0.05);
+		}
+		if (!bullet4.isInbounds('d'))
+		{
+			bullet4.setPosition(sf::Vector2f(-600, -600));
+		}
+
+		if (bullet4.getPosition() != sf::Vector2f(-600, -600))
+		{
+			bullet4.move(0, 0.05);
+		}
+		if (bullet4.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+		{
+			//player health reduced by 1
+		}
+
+		window.draw(bullet4);
+		window.draw(bullet3);
 		window.draw(bullet2);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		window.draw(spaceship);

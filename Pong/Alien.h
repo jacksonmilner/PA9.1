@@ -15,6 +15,7 @@ public:
 	void setHP();
 	int getHP();
 	void hit();
+	
 private:
 	int type;
 	int hp;
