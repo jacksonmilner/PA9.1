@@ -50,7 +50,7 @@ void RunApp::run_app()
 	int x4 = -1;
 	int aliensdead = 0;
 	bool bosstime = false;
-
+	int gameState = 0;
 	int x = window.getSize().x / 14;
 	for (int j = 0; j < 12; j++)
 		alienlist.push_back(Alien(10, sf::Color::Blue, sf::Vector2f((x * j)+ x, window.getSize().y - 400), 1));
@@ -64,6 +64,10 @@ void RunApp::run_app()
 
 	while (window.isOpen())
 	{
+		if (aliensdead != 48)
+		{
+			aliensdead = 0;
+		}
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -121,7 +125,7 @@ void RunApp::run_app()
 		{
 			bullet1.move(0, -0.4);
 		}
-		for (int i = 0; i < alienlist.size() - 1; i++)
+		for (int i = 0; i < alienlist.size(); i++)
 		{
 			if (alienlist[i].hit(bullet1))
 			{
@@ -129,12 +133,23 @@ void RunApp::run_app()
 			}
 		}
 		
-		for (int i = 0; i < alienlist.size() - 1; i++)
+		for (int i = 0; i < alienlist.size(); i++)
 		{
 			if (alienlist[i].getHP() == 0)
 				aliensdead++;
 		}
 		if (aliensdead == 48)
+		{
+			gameState = 1;
+		}
+		if (gameState == 1)
+		{
+			if (andy.hit(bullet1))
+			{
+				bullet1.setPosition(sf::Vector2f(600, 600));
+			};
+		}
+		if (gameState == 1 && andy.getHP() > 0)
 		{
 			window.draw(andy);
 		}

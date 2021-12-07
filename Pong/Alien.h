@@ -51,8 +51,9 @@ void Alien::setHP()
 		break;
 	case 4:
 		hp = 4;
+		break;
 	case 25:
-		hp = 25;
+		hp = 50;
 		break;
 	default:
 		break;
