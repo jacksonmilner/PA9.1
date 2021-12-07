@@ -8,6 +8,7 @@
 #include "mainShip.h"
 #include "Alien.h"
 #include "bullet.h"
+#include "Andy.h"
 #include <math.h>
 #define Pi 3.14159265
 
@@ -24,7 +25,7 @@ int main()
 	spaceShip bug5(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600,600));
-
+	Andy boss(20, sf::Color::Red, sf::Vector2f(50, 0));
 	int getsize = window.getSize().x / 14;
 	int get13 = 13;
 	int directionbugx = -1;
@@ -32,18 +33,18 @@ int main()
 	int directionalienx = -1;
 	int directionenemyx = -1;
 
-	Alien bug1(10, sf::Color::Blue, sf::Vector2f((0) + getsize, window.getSize().y - 400), 1);
-	Alien bug2(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 400), 1);
-	Alien bug3(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 400), 1);
-	Alien bug4(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 400), 1);
-	Alien bug5(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 400), 1);
-	Alien bug6(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 400), 1);
-	Alien bug7(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 400), 1);
-	Alien bug8(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 400), 1);
-	Alien bug9(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 400), 1);
-	Alien bug10(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 400), 1);
-	Alien bug11(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 400), 1);
-	Alien bug12(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 400), 1);
+	//Alien bug1(10, sf::Color::Blue, sf::Vector2f((0) + getsize, window.getSize().y - 400), 1);
+	//Alien bug2(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 400), 1);
+	//Alien bug3(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 400), 1);
+	//Alien bug4(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 400), 1);
+	//Alien bug5(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 400), 1);
+	//Alien bug6(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 400), 1);
+	//Alien bug7(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 400), 1);
+	//Alien bug8(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 400), 1);
+	//Alien bug9(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 400), 1);
+	//Alien bug10(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 400), 1);
+	//Alien bug11(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 400), 1);
+	//Alien bug12(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 400), 1);
 
 	Alien bee1(10, sf::Color::Magenta, sf::Vector2f((0) + getsize, window.getSize().y - 430), 2);
 	Alien bee2(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 430), 2);
@@ -120,13 +121,11 @@ int main()
 		{
 			bullet1.move(0, -0.4);
 		}
-		if (bug1.getGlobalBounds().intersects(bullet1.getGlobalBounds()))
+		if (bug1.hit(bullet1))
 		{
-			if (bug1.getHP() == 1)
-			{
-				bug1.hit();
-			}
+			bullet1.setPosition(sf::Vector2f(600, 600));
 		}
+
 		if (bug1.getPosition().x != 300)
 		{
 			int tempx = bug1.getPosition().x;
@@ -136,11 +135,16 @@ int main()
 			bug1.move(0.05*z, 0.05*y); //bug moving
 
 		}
-		if (bug1.getPosition().x == 300)
+		if (boss.hit(bullet1))
 		{
-
+			boss.updateHealthBar();
 		}
-		
+		if (bug1.getHP() <= 0 && boss.getHP() > 0)
+		{
+			window.draw(boss);
+			window.draw(boss.getHealthBar());
+		}
+
 		window.draw(spaceship);
 		if (bug1.getHP() != 0)
 			window.draw(bug1);
