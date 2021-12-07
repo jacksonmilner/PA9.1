@@ -11,6 +11,7 @@
 #include <math.h>
 #define Pi 3.14159265
 
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
@@ -23,6 +24,65 @@ int main()
 	spaceShip bug5(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	spaceShip bug6(15, sf::Color::Blue, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 500));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600,600));
+
+	int getsize = window.getSize().x / 14;
+	int get13 = 13;
+	int directionbugx = -1;
+	int directionbeex = -1;
+	int directionalienx = -1;
+	int directionenemyx = -1;
+
+	Alien bug1(10, sf::Color::Blue, sf::Vector2f((0) + getsize, window.getSize().y - 400), 1);
+	Alien bug2(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 400), 1);
+	Alien bug3(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 400), 1);
+	Alien bug4(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 400), 1);
+	Alien bug5(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 400), 1);
+	Alien bug6(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 400), 1);
+	Alien bug7(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 400), 1);
+	Alien bug8(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 400), 1);
+	Alien bug9(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 400), 1);
+	Alien bug10(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 400), 1);
+	Alien bug11(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 400), 1);
+	Alien bug12(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 400), 1);
+
+	Alien bee1(10, sf::Color::Magenta, sf::Vector2f((0) + getsize, window.getSize().y - 430), 2);
+	Alien bee2(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 430), 2);
+	Alien bee3(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 430), 2);
+	Alien bee4(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 430), 2);
+	Alien bee5(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 430), 2);
+	Alien bee6(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 430), 2);
+	Alien bee7(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 430), 2);
+	Alien bee8(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 430), 2);
+	Alien bee9(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 430), 2);
+	Alien bee10(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 430), 2);
+	Alien bee11(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 430), 2);
+	Alien bee12(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 430), 2);
+
+	Alien alien1(10, sf::Color::Red, sf::Vector2f((0) + getsize, window.getSize().y - 460), 3);
+	Alien alien2(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 460), 3);
+	Alien alien3(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 460), 3);
+	Alien alien4(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 460), 3);
+	Alien alien5(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 460), 3);
+	Alien alien6(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 460), 3);
+	Alien alien7(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 460), 3);
+	Alien alien8(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 460), 3);
+	Alien alien9(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 460), 3);
+	Alien alien10(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 460), 3);
+	Alien alien11(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 460), 3);
+	Alien alien12(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 460), 3);
+
+	Alien enemy1(10, sf::Color::Green, sf::Vector2f((0) + getsize, window.getSize().y - 490), 4);
+	Alien enemy2(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 490), 4);
+	Alien enemy3(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 490), 4);
+	Alien enemy4(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 490), 4);
+	Alien enemy5(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 490), 4);
+	Alien enemy6(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 490), 4);
+	Alien enemy7(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 490), 4);
+	Alien enemy8(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 490), 4);
+	Alien enemy9(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 490), 4);
+	Alien enemy10(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 490), 4);
+	Alien enemy11(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 490), 4);
+	Alien enemy12(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 490), 4); // do not delete
 
 	double x = (Pi/2); //bug moving
 	
