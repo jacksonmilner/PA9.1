@@ -12,13 +12,30 @@ public:
 		type = newtype;
 		setHP();
 	}
+	bool isInbounds(char side);
+
 	void setHP();
 	int getHP();
 	bool hit(Bullet& shot);
+	
+>>>>>>> ac6596904cbefee900f37413a32686e67a237274
 private:
 	int type;
 	int hp;
 };
+bool Alien::isInbounds(char side)
+{
+	if (side == 'l' && this->getPosition().x > 0)
+	{
+		return true;
+	}
+	if (side == 'r' && this->getPosition().x + 30 < 500)
+	{
+		return true;
+	}
+
+	return false;
+}
 
 void Alien::setHP()
 {
@@ -30,6 +47,14 @@ void Alien::setHP()
 	case 2:
 		hp = 2;
 	case 3:
+		hp = 25;
+		break;
+	case 3:
+		hp = 3;
+		break;
+	case 4:
+		hp = 4;
+	case 25:
 		hp = 25;
 		break;
 	default:
