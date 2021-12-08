@@ -13,10 +13,13 @@
 #include "runApp.h"
 #include "runAppCleaned.h"
 #include <math.h>
+#include "testAndy.h"
 #define Pi 3.14159265
 
 int main()
 {
+	TestAndy test;
+	test.testSpray();
 	int response = 1;
 	RunApp spaceshipgame(0);
 	RunApp2 spaceshipgameCleaned;
@@ -52,24 +55,4 @@ int main()
 	system("pause");
 	system("cls");
 	return 0;
-
-//sf::RenderWindow window{ sf::VideoMode(800,600), "The game!" };
-//sf::Texture t;
-////i.loadFromFile(/"Image.png");
-//t.loadFromFile("ANDYYY.jpg");
-////t.loadFromImage(i);
-//sf::Sprite s(t);
-//while (window.isOpen())
-//{
-//	sf::Event windowEvent;
-//	while (window.pollEvent(windowEvent))
-//	{
-//		if (windowEvent.type == sf::Event::Closed)
-//			window.close();
-//	}
-//	window.clear(sf::Color::White);
-//
-//	window.draw(s);
-//	window.display();
-//}
 }

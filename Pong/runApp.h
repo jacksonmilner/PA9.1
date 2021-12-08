@@ -98,8 +98,8 @@ RunApp::RunApp()
 	Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
 
 
-	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 25);
-	
+	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 50);
+
 	bool previousShootKeyState;
 	int getsize = (window.getSize().x - 240) / 12;
 	int x1 = -1;
@@ -238,26 +238,36 @@ RunApp::RunApp()
 		}
 		if (gameState == 1 && andy.getHP() > 0) //&& andy.getHP()>stage2)
 		{
-			if (andy_timer < 100000)
+			if (andy_timer % 10000 == 0)
 			{
-				if (andy_timer % 10000 == 0)
+				andy.setPosition(sf::Vector2f((rand() % (400 - 100 + 1) + 100), (rand() % (200 - 100 + 1) + 100)));
+			}
+			if (andy_timer % 5000 == 0 )
+			{
+				andy.spray();
+			}
+			if (andy.getAmmo()[0].getPosition() != sf::Vector2f(-600,-600))
+			{
+				andy.getAmmo()[0].move(-0.06, 0.07);
+				andy.getAmmo()[1].move(-0.03, 0.07);
+				andy.getAmmo()[2].move(0, 0.07);
+				andy.getAmmo()[3].move(0.03, 0.07);
+				andy.getAmmo()[4].move(0.06, 0.07);
+			}
+			for (int i = 0; i < 5; i++)
+			{
+				if (!andy.getAmmo()[i].isInbounds('d'))
 				{
-					andy.setPosition(sf::Vector2f((rand() % (400 - 100 + 1) + 100), (rand() % (200 - 100 + 1) + 100)));
+					for (int i = 0; i < 5; i++)
+					{
+						andy.getAmmo()[i].setPosition(sf::Vector2f(-600, -600));
+					}
 				}
 			}
-			else
+			for (int i = 0; i < 5; i++)
 			{
-				if (andy_timer > 100000 && andy_timer < 101000)
-				{
-					andy.setPosition(sf::Vector2f(window.getSize().x / 2-25, window.getSize().y / 2-25));
-				}
-				else
-				{
-
-					float andymovingx = sin(andy_timer/1000*Pi);
-					float andymovingy = sin(andy_timer / 1000 * Pi)*cos(andy_timer / 1000 * Pi);
-					//andy.move(0.1 * andymovingx, 0.1 * andymovingy); DONT KNOW HOW TO FIX ANDY MOVE FUNCTION
-				}
+				window.draw(andy.getAmmo()[i]);
+				spaceship.hit(andy.getAmmo()[i]);
 			}
 			window.draw(andy);
 			window.draw(andy.getHealthBar());
