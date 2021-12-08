@@ -63,6 +63,7 @@ void RunApp::run_app()
 	int p = 0;
 	int c = 0;
 	int shootthebulletfromaliens = 0;
+	int andy_timer = 0;
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Your Doom!");
 	spaceShip spaceship(15, sf::Color::Black, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
@@ -208,6 +209,10 @@ void RunApp::run_app()
 		}
 		if (gameState == 1 && andy.getHP() > 0)
 		{
+			if (andy_timer % 10000 == 0)
+			{
+				andy.setPosition(sf::Vector2f((rand() % (400 - 100 + 1) + 100), (rand() % (200 - 100 + 1) + 100)));
+			}
 			window.draw(andy);
 			window.draw(andy.getHealthBar());
 		}
@@ -345,6 +350,7 @@ void RunApp::run_app()
 		window.draw(spaceship);
 		window.display();
 		window.clear();
+		andy_timer++;
 	}
 }
 
