@@ -16,7 +16,7 @@ public:
 
 	void setHP();
 	int getHP();
-	bool hit(Bullet& shot);
+	bool hit(Bullet shot);
 	
 
 private:
