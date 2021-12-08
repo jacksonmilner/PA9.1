@@ -162,7 +162,9 @@
     <ClInclude Include="Alien.h" />
     <ClInclude Include="Andy.h" />
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="bullet2.h" />
     <ClInclude Include="mainMenu.h" />
+    <ClInclude Include="resources.h" />
     <ClInclude Include="runApp.h" />
     <ClInclude Include="mainShip.h" />
     <ClInclude Include="spaceShip.h" />

@@ -5,11 +5,11 @@
 //                a circle in the window.
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include "runApp.h"
-#include "mainShip.h"
-#include "Alien.h"
-#include "bullet.h"
+//#include <iostream>
+//#include "runApp.h"
+//#include "mainShip.h"
+//#include "Alien.h"
+//#include "bullet.h"
 #include "runApp.h"
 #include <math.h>
 #define Pi 3.14159265
@@ -17,7 +17,8 @@
 int main()
 {
 	int response = 1;
-	RunApp spaceshipgame(0);
+//	RunApp spaceshipgame(0);
+	RunApp spaceshipgameCleaned;
 	while (response != 3)
 	{
 		std::cout << "Welcome to your doom" << std::endl;
@@ -27,7 +28,8 @@ int main()
 		std::cin >> response;
 		if (response == 1)
 		{
-			spaceshipgame.run_app();
+			//spaceshipgame.run_app();
+			spaceshipgameCleaned.testrun_app();
 			system("cls");
 			std::cout << "You have completed our game. Thank You for playing." << std::endl 
 				 << "Contributers: Jackson Milner, Bradley Cruz, Owen Ryan, Rodrigo Martinez" << std::endl << std::endl;
@@ -49,27 +51,24 @@ int main()
 	system("pause");
 	system("cls");
 	return 0;
-	//RunApp spaceshipgame(0);
-	//spaceshipgame.run_app();
 
-sf::RenderWindow window{ sf::VideoMode(800,600), "The game!" };
-sf::Texture t;
-//i.loadFromFile(/"Image.png");
-t.loadFromFile("ANDYYY.jpg");
-//t.loadFromImage(i);
-sf::Sprite s(t);
-while (window.isOpen())
-{
-	sf::Event windowEvent;
-	while (window.pollEvent(windowEvent))
-	{
-		if (windowEvent.type == sf::Event::Closed)
-			window.close();
-	}
-	window.clear(sf::Color::White);
-
-	window.draw(s);
-	window.display();
-}
-return 0;
+//sf::RenderWindow window{ sf::VideoMode(800,600), "The game!" };
+//sf::Texture t;
+////i.loadFromFile(/"Image.png");
+//t.loadFromFile("ANDYYY.jpg");
+////t.loadFromImage(i);
+//sf::Sprite s(t);
+//while (window.isOpen())
+//{
+//	sf::Event windowEvent;
+//	while (window.pollEvent(windowEvent))
+//	{
+//		if (windowEvent.type == sf::Event::Closed)
+//			window.close();
+//	}
+//	window.clear(sf::Color::White);
+//
+//	window.draw(s);
+//	window.display();
+//}
 }

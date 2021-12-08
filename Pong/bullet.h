@@ -20,8 +20,6 @@ public:
 	int getHP();
 
 private:
-	// double mRadius;
-	//char bullet_type;
 	int hp;
 };
 

@@ -7,6 +7,7 @@
 #include "mainShip.h"
 #include "Alien.h"
 #include "Andy.h"
+#include "spaceShip.h"
 #include <time.h>
 
 using std::vector;
@@ -19,16 +20,12 @@ public:
 	RunApp(int score)
 	{
 		score = 0;
+		render();
+		initWindow();
+		initVars();
 	}
 	RunApp();
 	~RunApp();
-	void initWindow();
-	void initVars();
-	void update();
-	void render();
-	bool isRunning();
-	void inputCheck();
-	void printStartScreen();
 
 	void setScore(int newscore);
 	int getScore()
@@ -36,19 +33,52 @@ public:
 		return mscore;
 	}
 
+
+
+	//BC TESTS
+	void testrun_app();
+
+	void initWindow();
+	void initVars();
+	void initTextures();
+
+	void update();
+	void render();
+	bool isRunning();
+	void pollEventUpdate();
+	void inputUpdate();
+	void printStartScreen();
 	void run_app();
+
+
 private:
+	//BC TEST v
 	int mscore;
 	sf::RenderWindow* mWindow;
 	sf::VideoMode mVideoMode;
 	sf::Event mEvent;
 	spaceShip mPlayer;
+	spaceShip2 mtestPlayer;
 	bool gameRunning;
 
+
+	//BC TEST ^
 
 	std::vector<Alien> alienlist;
 	std::vector<Bullet> Bulletlist;
 };
+
+RunApp::RunApp()
+{
+	initWindow();
+	initTextures();
+	initVars();
+}
+
+RunApp::~RunApp()
+{
+
+}
 
 void RunApp::run_app()
 {
@@ -59,17 +89,15 @@ void RunApp::run_app()
 	int c = 0;
 	int shootthebulletfromaliens = 0;
 	int andy_timer = 0;
-	sf::RenderWindow window(sf::VideoMode(500, 500), "Your Doom!");
+	sf::RenderWindow window = sf::RenderWindow(sf::VideoMode(500, 500), "Your Doom!");
+	window.setFramerateLimit(60);
 	spaceShip spaceship(15, sf::Color::Black, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
 	sf::Texture t;
 	t.loadFromFile("Space-Free-PNG-Image.png");
 	sf::Sprite background(t);
-	//Bullet bullet2(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
-	//Bullet bullet4(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
 	int lhand_moving_right = 1;
-	//Bullet lhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
-	//Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
+
 
 
 	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 25);
@@ -110,11 +138,6 @@ void RunApp::run_app()
 		int aliensdead = 0;
 		sf::Event event;
 		window.draw(background);
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
 		if (spaceship.getHP() == 0)
 		{
 			std::cout << std::endl << "You have perished" << std::endl;
@@ -349,23 +372,15 @@ void RunApp::run_app()
 	}
 }
 
-
-
-RunApp::RunApp()
-{
-	initWindow();
-	initVars();
-}
-
-RunApp::~RunApp()
+void RunApp::testrun_app()
 {
 
 }
 
 void RunApp::initWindow()
 {
-	mVideoMode = sf::VideoMode(500, 500);
-	mWindow = new sf::RenderWindow(mVideoMode, "Invaders");
+	mWindow = new sf::RenderWindow(sf::VideoMode(500, 500), "Your Doom!");
+	mWindow->setFramerateLimit(60);
 }
 
 void RunApp::initVars()
@@ -373,15 +388,23 @@ void RunApp::initVars()
 	return;
 }
 
+void RunApp::initTextures()
+{
+
+}
+
 void RunApp::update()
 {
-	inputCheck();
+	pollEventUpdate();
+
+	mtestPlayer.update();
 }
 
 void RunApp::render()
 {
 	mWindow->clear();
 
+	mtestPlayer.render(mWindow);
 
 	mWindow->display();
 }
@@ -392,7 +415,7 @@ bool RunApp::isRunning()
 	return gameRunning;
 }
 
-void RunApp::inputCheck()
+void RunApp::pollEventUpdate()
 {
 	while (mWindow->pollEvent(mEvent))
 	{
@@ -402,7 +425,7 @@ void RunApp::inputCheck()
 			mWindow->close();
 			break;
 		case sf::Event::KeyPressed:
-			if (mEvent.key.code == )
+		//	if (mEvent.key.code == )
 		default:
 			break;
 		}
@@ -420,11 +443,6 @@ void RunApp::printStartScreen()
 void RunApp::setScore(int newscore)
 {
 	mscore = newscore;
-}
-
-void RunApp::run_app()
-{
-	
 }
 
 

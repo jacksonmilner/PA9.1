@@ -1,5 +1,6 @@
 #pragma once
 #include "mainShip.h"
+#include "spaceShip.h"
 
 class Alien : public sf::CircleShape
 {
@@ -17,7 +18,7 @@ public:
 	void setHP();
 	int getHP();
 	bool hit(Bullet shot);
-	
+	void shoot(spaceShip2* player);
 
 private:
 	int type;
@@ -73,4 +74,7 @@ bool Alien::hit(Bullet shot)
 	}
 	return false;
 }
+void Alien::shoot(spaceShip2* player)
+{
 
+}
