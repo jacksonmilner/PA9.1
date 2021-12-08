@@ -83,7 +83,7 @@ void RunApp::run_app()
 
 
 	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 25);
-	int stage2 = andy.getHP();
+	
 	bool previousShootKeyState;
 	int getsize = (window.getSize().x - 240) / 12;
 	int x1 = -1;
@@ -233,7 +233,7 @@ void RunApp::run_app()
 			{
 				if (andy_timer > 100000 && andy_timer < 101000)
 				{
-					andy.setPosition(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
+					andy.setPosition(sf::Vector2f(window.getSize().x / 2-25, window.getSize().y / 2-25));
 				}
 				else
 				{
@@ -245,11 +245,12 @@ void RunApp::run_app()
 			}
 			window.draw(andy);
 			window.draw(andy.getHealthBar());
+			andy_timer++;
 		}
-		if ((gameState == 1 && andy.getHP() > 0) && andy.getHP() <= stage2)
-		{
+		//if (gameState == 1 && andy.getHP() > 0)// && andy.getHP() <= stage2)
+		//{
 			
-		}
+		//}
 
 
 
@@ -439,7 +440,7 @@ void RunApp::run_app()
 		window.draw(spaceship);
 		window.display();
 		window.clear();
-		andy_timer++;
+		
 	}
 }
 
