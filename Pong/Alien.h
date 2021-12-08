@@ -5,22 +5,19 @@ class Alien : public sf::CircleShape
 {
 public:
 	Alien(const double& newRadius, const sf::Color& newColor,
-		const sf::Vector2f& newPosition, const int& newtype) : sf::CircleShape(newRadius)
+		const sf::Vector2f& newPosition, const int& newHP) : sf::CircleShape(newRadius)
 	{
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
-		type = newtype;
-		setHP();
+		hp = newHP;
 	}
 	bool isInbounds(char side);
 
-	void setHP();
 	int getHP();
 	bool hit(Bullet shot);
 	
 
 private:
-	int type;
 	int hp;
 };
 bool Alien::isInbounds(char side)
@@ -37,28 +34,7 @@ bool Alien::isInbounds(char side)
 	return false;
 }
 
-void Alien::setHP()
-{
-	switch (type)
-	{
-	case 1:
-		hp = 1;
-		break;
-	case 2:
-		hp = 2;
-	case 3:
-		hp = 3;
-		break;
-	case 4:
-		hp = 4;
-		break;
-	case 25:
-		hp = 50;
-		break;
-	default:
-		break;
-	}
-}
+
 int Alien::getHP()
 {
 	return hp;

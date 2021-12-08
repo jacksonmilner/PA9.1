@@ -77,7 +77,7 @@ void RunApp::run_app()
 	//Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
 
 
-	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 25);
+	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 50);
 
 	bool previousShootKeyState;
 	int getsize = (window.getSize().x - 240) / 12;
@@ -207,11 +207,39 @@ void RunApp::run_app()
 				andy.updateHealthBar();
 			};
 		}
+
 		if (gameState == 1 && andy.getHP() > 0)
 		{
 			if (andy_timer % 10000 == 0)
 			{
 				andy.setPosition(sf::Vector2f((rand() % (400 - 100 + 1) + 100), (rand() % (200 - 100 + 1) + 100)));
+			}
+			if (andy_timer % 5000 == 0 )
+			{
+				andy.spray();
+			}
+			if (andy.getAmmo()[0].getPosition() != sf::Vector2f(-600,-600))
+			{
+				andy.getAmmo()[0].move(-0.06, 0.07);
+				andy.getAmmo()[1].move(-0.03, 0.07);
+				andy.getAmmo()[2].move(0, 0.07);
+				andy.getAmmo()[3].move(0.03, 0.07);
+				andy.getAmmo()[4].move(0.06, 0.07);
+			}
+			for (int i = 0; i < 5; i++)
+			{
+				if (!andy.getAmmo()[i].isInbounds('d'))
+				{
+					for (int i = 0; i < 5; i++)
+					{
+						andy.getAmmo()[i].setPosition(sf::Vector2f(-600, -600));
+					}
+				}
+			}
+			for (int i = 0; i < 5; i++)
+			{
+				window.draw(andy.getAmmo()[i]);
+				spaceship.hit(andy.getAmmo()[i]);
 			}
 			window.draw(andy);
 			window.draw(andy.getHealthBar());
@@ -345,7 +373,6 @@ void RunApp::run_app()
 		//window.draw(lhand);
 		//window.draw(bullet4);
 		//window.draw(bullet2);
-		
 		window.draw(bullet1);
 		window.draw(spaceship);
 		window.display();

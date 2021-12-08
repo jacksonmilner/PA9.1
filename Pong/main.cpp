@@ -12,10 +12,13 @@
 #include "bullet.h"
 #include "runApp.h"
 #include <math.h>
+#include "testAndy.h"
 #define Pi 3.14159265
 
 int main()
 {
+	TestAndy test;
+	test.testSpray();
 	int response = 1;
 	RunApp spaceshipgame(0);
 	while (response != 3)
