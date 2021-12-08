@@ -16,8 +16,8 @@ public:
 
 	void setHP();
 	int getHP();
-
-	bool hit(Bullet);
+	bool hit(Bullet& shot);
+	
 
 private:
 	int type;
@@ -53,7 +53,7 @@ void Alien::setHP()
 		hp = 4;
 		break;
 	case 25:
-		hp = 25;
+		hp = 50;
 		break;
 	default:
 		break;
@@ -66,7 +66,7 @@ int Alien::getHP()
 
 bool Alien::hit(Bullet shot)
 {
-	if (this->getGlobalBounds().intersects(shot.getGlobalBounds()) && hp > 0)
+	if (this->getGlobalBounds().intersects(shot.getGlobalBounds()) && hp != 0)
 	{
 		hp--;
 		return true;
