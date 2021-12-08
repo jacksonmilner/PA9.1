@@ -6,6 +6,7 @@
 #include "mainShip.h"
 #include "Alien.h"
 #include "Andy.h"
+#include <time.h>
 
 using std::vector;
 
@@ -51,18 +52,25 @@ private:
 
 
 	std::vector<Alien> alienlist;
+	std::vector<Bullet> Bulletlist;
 };
 
 void RunApp::run_app()
 {
+	srand(time(0));
+	int yum = 0;
+	int z = 0;
+	int p = 0;
+	int c = 0;
+	int shootthebulletfromaliens = 0;
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 	spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
-	Bullet bullet2(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
-	Bullet bullet4(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
+	//Bullet bullet2(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
+	//Bullet bullet4(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
 	int lhand_moving_right = 1;
-	Bullet lhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
-	Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
+	//Bullet lhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
+	//Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
 
 
 	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 25);
@@ -77,13 +85,25 @@ void RunApp::run_app()
 	int gameState = 0;
 	int x = window.getSize().x / 14;
 	for (int j = 0; j < 12; j++)
-		alienlist.push_back(Alien(10, sf::Color::Blue, sf::Vector2f((x * j)+ x, window.getSize().y - 400), 1));
+	{
+		alienlist.push_back(Alien(10, sf::Color::Blue, sf::Vector2f((x * j) + x, window.getSize().y - 400), 1));
+		Bulletlist.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(-600, -600))); //change color
+	}
 	for (int e = 0; e < 12; e++)
-		alienlist.push_back(Alien(10, sf::Color::Magenta, sf::Vector2f((x * e) +x, window.getSize().y - 430), 2));
+	{
+		alienlist.push_back(Alien(10, sf::Color::Magenta, sf::Vector2f((x * e) + x, window.getSize().y - 430), 2));
+		Bulletlist.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(-600, -600))); //change color
+	}
 	for (int b = 0; b < 12; b++)
+	{
 		alienlist.push_back(Alien(10, sf::Color::Red, sf::Vector2f((x * b) + x, window.getSize().y - 460), 3));
+		Bulletlist.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(-600, -600))); //change color
+	}
 	for (int f = 0; f < 12; f++)
+	{
 		alienlist.push_back(Alien(10, sf::Color::Green, sf::Vector2f((x * f) + x, window.getSize().y - 490), 4));
+		Bulletlist.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(-600, -600))); //change color
+	}
 	float movex = 0, movey = 0;
 
 	while (window.isOpen())
@@ -132,10 +152,11 @@ void RunApp::run_app()
 			x4 *= -1;
 
 		
-
+		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.getPosition() == sf::Vector2f(600, 600))
 		{
-			bullet1.setPosition(spaceship.getPosition());
+			sf::Vector2f center = sf::Vector2f(spaceship.getPosition().x + 11, spaceship.getPosition().y);
+			bullet1.setPosition(center);
 			bullet1.move(0, -0.4);
 		}
 		if (!bullet1.isInbounds('u'))
@@ -180,90 +201,138 @@ void RunApp::run_app()
 		{
 			if (alienlist[i].getHP() != 0)
 				window.draw(alienlist[i]);
+			window.draw(Bulletlist[i]);
 		}
 
+		if (aliensdead < 48)
+		{
+			c = rand(); //SET C = C+1; AND THEN IT TAKES LIKE 20 SECONDS FOR C TO BE OVER 32000
+			if (c > 32000)
+				shootthebulletfromaliens = 1;
+			else
+				shootthebulletfromaliens = 0;
+			
+			if (shootthebulletfromaliens == 1 && Bulletlist[yum].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
+			{
+				yum = rand() % 48;
+				float tempbugx = alienlist[yum].getPosition().x;
+				float tempbugy = alienlist[yum].getPosition().y;
+				float tempssx = spaceship.getPosition().x + 12.5;
+				float tempssy = spaceship.getPosition().y + 12.5;
 
+				float xval = tempssx - tempbugx;
+				float yval = tempssy - tempbugy;
+
+				float normal = sqrt(pow(xval, 2) + pow(yval, 2));
+
+				movex = xval / normal;
+				movey = yval / normal;
+				Bulletlist[yum].setPosition(alienlist[yum].getPosition()); 
+				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
+			}
+			if (!Bulletlist[yum].isInbounds('d'))
+			{
+				Bulletlist[yum].setPosition(sf::Vector2f(-600, -600));
+			}
+			if (Bulletlist[yum].getPosition() != sf::Vector2f(-600, -600))
+			{
+				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
+			}
+			if (Bulletlist[yum].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+			{
+				//player health reduced by 1
+			}
+
+			
+			float moveyh = 0;
+			float movexh = 0;
+			if (shootthebulletfromaliens == 1 && Bulletlist[z].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[z].getPosition() == sf::Vector2f(-600, -600))
+			{
+				z = rand() % 48;
+				Bulletlist[z].setPosition(alienlist[z].getPosition());
+				Bulletlist[z].move(0.02 * movexh, 0.05 * moveyh);
+			}
+			float tempbugx = Bulletlist[z].getPosition().x;
+			float tempbugy = alienlist[z].getPosition().y;
+			float tempssx = spaceship.getPosition().x + 12.5;
+			float tempssy = spaceship.getPosition().y + 12.5;
+
+			float xval = tempssx - tempbugx;
+			float yval = tempssy - tempbugy;
+
+			float normal = sqrt(pow(xval, 2) + pow(yval, 2));
+
+			movexh = xval / normal;
+			moveyh = yval / normal;
+			if (!Bulletlist[z].isInbounds('d'))
+			{
+				Bulletlist[z].setPosition(sf::Vector2f(-600, -600));
+			}
+
+			if (Bulletlist[z].getPosition() != sf::Vector2f(-600, -600))
+			{
+				Bulletlist[z].move(0.05 * movexh, 0.04 * moveyh);
+			}
+			if (Bulletlist[z].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+			{
+				//player health reduced by 1
+			}
+
+			
+			if (shootthebulletfromaliens == 1 && Bulletlist[p].getPosition() == sf::Vector2f(-600, -600))
+			{
+				p = rand() % 48;
+				Bulletlist[p].setPosition(alienlist[p].getPosition());
+				Bulletlist[p].move(0, 0.05);
+			}
+			if (!Bulletlist[p].isInbounds('d'))
+			{
+				Bulletlist[p].setPosition(sf::Vector2f(-600, -600));
+			}
+
+			if (Bulletlist[p].getPosition() != sf::Vector2f(-600, -600))
+			{
+				Bulletlist[p].move(0, 0.05);
+			}
+			if (Bulletlist[p].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+			{
+				//player health reduced by 1
+			}
+		}
 		//		BULLET THAT TRACKS WORKS WITH Q, CHANGE TO TIMED EVENT, IF ALL THE TEMP BUG AND XVAL AND NORMAL AND MOVEX/Y ARE MOVED TO THE OUTSIDE ITLL TRACK THE PLAYER
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && bullet2.getPosition() == sf::Vector2f(-600, -600))
-				{
-					float tempbugx = andy.getPosition().x;
-					float tempbugy = andy.getPosition().y;
-					float tempssx = spaceship.getPosition().x+12.5;
-					float tempssy = spaceship.getPosition().y+12.5;
-		
-					float xval = tempssx - tempbugx;
-					float yval = tempssy - tempbugy;
-		
-					float normal = sqrt(pow(xval, 2) + pow(yval, 2));
-		
-					movex = xval / normal;
-					movey = yval / normal;
-					bullet2.setPosition(andy.getPosition());
-					bullet2.move(0.05*movex, 0.05*movey);
-				}
-				if (!bullet2.isInbounds('d'))
-				{
-					bullet2.setPosition(sf::Vector2f(-600, -600));
-				}
-		
-				if (bullet2.getPosition() != sf::Vector2f(-600, -600))
-				{
-					bullet2.move(0.05*movex, 0.05*movey);
-				}
-				if (bullet2.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
-				{
-					//player health reduced by 1
-				}
-		
+				
 
 
 		//		PRESS E, SWITCH TO A TIMED EVENT LATER
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && bullet4.getPosition() == sf::Vector2f(-600, -600))
-				{
-					bullet4.setPosition(andy.getPosition());
-					bullet4.move(0, 0.05);
-				}
-				if (!bullet4.isInbounds('d'))
-				{
-					bullet4.setPosition(sf::Vector2f(-600, -600));
-				}
-		
-				if (bullet4.getPosition() != sf::Vector2f(-600, -600))
-				{
-					bullet4.move(0, 0.05);
-				}
-				if (bullet4.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
-				{
-					//player health reduced by 1
-				}
+				
 
 
-				 //ANDYS LEFT HAND WORKS WHEN R IS PRESSED, SWITCH TO A TIMED EVENT LATER
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && lhand.getPosition() == sf::Vector2f(-600, -600))
-		{
-			lhand.setPosition(sf::Vector2f(-10,spaceship.getPosition().y));
-			lhand.move(0.06, 0);
-		}
-		if (!lhand.isInbounds('r') || lhand.getPosition().x < -100)
-		{
-			lhand.setPosition(sf::Vector2f(-600, -600));
-			lhand_moving_right = 1;
-		}
-		if (lhand.getPosition() != sf::Vector2f(-600, -600))
-		{
-			if(lhand_moving_right == 1)
-				lhand.move(0.06, 0);
-			else
-				lhand.move(-0.06,0);
-		}
-		if (lhand.getPosition().x > 280)
-		{
-			lhand_moving_right = 0;
-		}
+		//		 //ANDYS LEFT HAND WORKS WHEN R IS PRESSED, SWITCH TO A TIMED EVENT LATER
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && lhand.getPosition() == sf::Vector2f(-600, -600))
+		//{
+		//	lhand.setPosition(sf::Vector2f(-10,spaceship.getPosition().y));
+		//	lhand.move(0.06, 0);
+		//}
+		//if (!lhand.isInbounds('r') || lhand.getPosition().x < -100)
+		//{
+		//	lhand.setPosition(sf::Vector2f(-600, -600));
+		//	lhand_moving_right = 1;
+		//}
+		//if (lhand.getPosition() != sf::Vector2f(-600, -600))
+		//{
+		//	if(lhand_moving_right == 1)
+		//		lhand.move(0.06, 0);
+		//	else
+		//		lhand.move(-0.06,0);
+		//}
+		//if (lhand.getPosition().x > 280)
+		//{
+		//	lhand_moving_right = 0;
+		//}
 
-		window.draw(lhand);
-		window.draw(bullet4);
-		window.draw(bullet2);
+		//window.draw(lhand);
+		//window.draw(bullet4);
+		//window.draw(bullet2);
 		window.draw(bullet1);
 		window.draw(spaceship);
 		window.display();
