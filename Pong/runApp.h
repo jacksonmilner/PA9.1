@@ -203,8 +203,9 @@ void RunApp::run_app()
 
 		if (aliensdead < 48)
 		{
+			
 			int x = 3; //rand() % 48
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
 			{
 				float tempbugx = alienlist[x].getPosition().x;
 				float tempbugy = alienlist[x].getPosition().y;
@@ -234,30 +235,66 @@ void RunApp::run_app()
 			{
 				//player health reduced by 1
 			}
+
+			x = 4;
+			float tempbugx = Bulletlist[x].getPosition().x;
+			float tempbugy = alienlist[x].getPosition().y;
+			float tempssx = spaceship.getPosition().x + 12.5;
+			float tempssy = spaceship.getPosition().y + 12.5;
+
+			float xval = tempssx - tempbugx;
+			float yval = tempssy - tempbugy;
+
+			float normal = sqrt(pow(xval, 2) + pow(yval, 2));
+
+			float movexh = xval / normal;
+			float moveyh = yval / normal;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
+			{
+				
+				Bulletlist[x].setPosition(alienlist[x].getPosition());
+				Bulletlist[x].move(0.05 * movexh, 0.05 * moveyh);
+			}
+			if (!Bulletlist[x].isInbounds('d'))
+			{
+				Bulletlist[x].setPosition(sf::Vector2f(-600, -600));
+			}
+
+			if (Bulletlist[x].getPosition() != sf::Vector2f(-600, -600))
+			{
+				Bulletlist[x].move(0.05 * movexh, 0.05 * moveyh);
+			}
+			if (Bulletlist[x].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+			{
+				//player health reduced by 1
+			}
+
+			x = 5;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
+			{
+				Bulletlist[x].setPosition(alienlist[x].getPosition());
+				Bulletlist[x].move(0, 0.05);
+			}
+			if (!Bulletlist[x].isInbounds('d'))
+			{
+				Bulletlist[x].setPosition(sf::Vector2f(-600, -600));
+			}
+
+			if (Bulletlist[x].getPosition() != sf::Vector2f(-600, -600))
+			{
+				Bulletlist[x].move(0, 0.05);
+			}
+			if (Bulletlist[x].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+			{
+				//player health reduced by 1
+			}
 		}
 		//		BULLET THAT TRACKS WORKS WITH Q, CHANGE TO TIMED EVENT, IF ALL THE TEMP BUG AND XVAL AND NORMAL AND MOVEX/Y ARE MOVED TO THE OUTSIDE ITLL TRACK THE PLAYER
 				
 
 
 		//		PRESS E, SWITCH TO A TIMED EVENT LATER
-		//		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && bullet4.getPosition() == sf::Vector2f(-600, -600))
-		//		{
-		//			bullet4.setPosition(andy.getPosition());
-		//			bullet4.move(0, 0.05);
-		//		}
-		//		if (!bullet4.isInbounds('d'))
-		//		{
-		//			bullet4.setPosition(sf::Vector2f(-600, -600));
-		//		}
-		//
-		//		if (bullet4.getPosition() != sf::Vector2f(-600, -600))
-		//		{
-		//			bullet4.move(0, 0.05);
-		//		}
-		//		if (bullet4.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
-		//		{
-		//			//player health reduced by 1
-		//		}
+				
 
 
 		//		 //ANDYS LEFT HAND WORKS WHEN R IS PRESSED, SWITCH TO A TIMED EVENT LATER
