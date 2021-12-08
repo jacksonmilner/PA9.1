@@ -76,5 +76,9 @@
     <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Space-Free-PNG-Image.png">
+    <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
