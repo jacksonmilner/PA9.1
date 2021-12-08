@@ -69,6 +69,7 @@ void RunApp::run_app()
 	int shootthebulletfromaliens2 = 0;
 	int shootthebulletfromaliens3 = 0;
 	int shootthebulletfromaliens4 = 0;
+	int andy_timer = 0;
 
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Your Doom!");
 	spaceShip spaceship(15, sf::Color::Black, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
@@ -76,15 +77,13 @@ void RunApp::run_app()
 	sf::Texture t;
 	t.loadFromFile("Space-Free-PNG-Image.png");
 	sf::Sprite background(t);
-	//Bullet bullet2(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
-	//Bullet bullet4(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
 	int lhand_moving_right = 1;
-	//Bullet lhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
-	//Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
+	Bullet lhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
+	Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
 
 
 	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 25);
-
+	int stage2 = andy.getHP();
 	bool previousShootKeyState;
 	int getsize = (window.getSize().x - 240) / 12;
 	int x1 = -1;
@@ -210,6 +209,9 @@ void RunApp::run_app()
 		{
 			gameState = 1;
 		}
+		
+
+
 		if (gameState == 1)
 		{
 			if (andy.hit(bullet1))
@@ -218,11 +220,43 @@ void RunApp::run_app()
 				andy.updateHealthBar();
 			};
 		}
-		if (gameState == 1 && andy.getHP() > 0)
+		if (gameState == 1 && andy.getHP() > 0) //&& andy.getHP()>stage2)
 		{
+			if (andy_timer < 100000)
+			{
+				if (andy_timer % 10000 == 0)
+				{
+					andy.setPosition(sf::Vector2f((rand() % (400 - 100 + 1) + 100), (rand() % (200 - 100 + 1) + 100)));
+				}
+			}
+			else
+			{
+				if (andy_timer > 100000 && andy_timer < 101000)
+				{
+					andy.setPosition(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
+				}
+				else
+				{
+
+					float andymovingx = sin(andy_timer/1000*Pi);
+					float andymovingy = sin(andy_timer / 1000 * Pi)*cos(andy_timer / 1000 * Pi);
+					//andy.move(0.1 * andymovingx, 0.1 * andymovingy); DONT KNOW HOW TO FIX ANDY MOVE FUNCTION
+				}
+			}
 			window.draw(andy);
 			window.draw(andy.getHealthBar());
 		}
+		if ((gameState == 1 && andy.getHP() > 0) && andy.getHP() <= stage2)
+		{
+			
+		}
+
+
+
+
+
+
+
 		for (int i = 0; i <= alienlist.size() - 1; i++)
 		{
 			if (alienlist[i].getHP() != 0)
@@ -399,37 +433,13 @@ void RunApp::run_app()
 				Bulletlist[i].setFillColor(sf::Color::Transparent);
 			}
 		}
-		//		 //ANDYS LEFT HAND WORKS WHEN R IS PRESSED, SWITCH TO A TIMED EVENT LATER
-		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && lhand.getPosition() == sf::Vector2f(-600, -600))
-		//{
-		//	lhand.setPosition(sf::Vector2f(-10,spaceship.getPosition().y));
-		//	lhand.move(0.06, 0);
-		//}
-		//if (!lhand.isInbounds('r') || lhand.getPosition().x < -100)
-		//{
-		//	lhand.setPosition(sf::Vector2f(-600, -600));
-		//	lhand_moving_right = 1;
-		//}
-		//if (lhand.getPosition() != sf::Vector2f(-600, -600))
-		//{
-		//	if(lhand_moving_right == 1)
-		//		lhand.move(0.06, 0);
-		//	else
-		//		lhand.move(-0.06,0);
-		//}
-		//if (lhand.getPosition().x > 280)
-		//{
-		//	lhand_moving_right = 0;
-		//}
-
-		//window.draw(lhand);
-		//window.draw(bullet4);
-		//window.draw(bullet2);
 		
+		window.draw(lhand);
 		window.draw(bullet1);
 		window.draw(spaceship);
 		window.display();
 		window.clear();
+		andy_timer++;
 	}
 }
 
