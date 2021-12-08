@@ -156,6 +156,86 @@ void RunApp::run_app()
 			if (alienlist[i].getHP() != 0)
 				window.draw(alienlist[i]);
 		}
+
+
+		//		BULLET THAT TRACKS WORKS WITH Q, CHANGE TO TIMED EVENT, IF ALL THE TEMP BUG AND XVAL AND NORMAL AND MOVEX/Y ARE MOVED TO THE OUTSIDE ITLL TRACK THE PLAYER
+		//		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && bullet2.getPosition() == sf::Vector2f(-600, -600))
+		//		{
+		//			float tempbugx = bug1.getPosition().x;
+		//			float tempbugy = bug1.getPosition().y;
+		//			float tempssx = spaceship.getPosition().x+12.5;
+		//			float tempssy = spaceship.getPosition().y+12.5;
+		//
+		//			float xval = tempssx - tempbugx;
+		//			float yval = tempssy - tempbugy;
+		//
+		//			float normal = sqrt(pow(xval, 2) + pow(yval, 2));
+		//
+		//			movex = xval / normal;
+		//			movey = yval / normal;
+		//			bullet2.setPosition(bug1.getPosition());
+		//			bullet2.move(0.05*movex, 0.05*movey);
+		//		}
+		//		if (!bullet2.isInbounds('d'))
+		//		{
+		//			bullet2.setPosition(sf::Vector2f(-600, -600));
+		//		}
+		//
+		//		if (bullet2.getPosition() != sf::Vector2f(-600, -600))
+		//		{
+		//			bullet2.move(0.05*movex, 0.05*movey);
+		//		}
+		//		if (bullet2.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+		//		{
+		//			//player health reduced by 1
+		//		}
+		//
+
+
+		//		PRESS E, SWITCH TO A TIMED EVENT LATER
+		//		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && bullet4.getPosition() == sf::Vector2f(-600, -600))
+		//		{
+		//			bullet4.setPosition(bug1.getPosition());
+		//			bullet4.move(0, 0.05);
+		//		}
+		//		if (!bullet4.isInbounds('d'))
+		//		{
+		//			bullet4.setPosition(sf::Vector2f(-600, -600));
+		//		}
+		//
+		//		if (bullet4.getPosition() != sf::Vector2f(-600, -600))
+		//		{
+		//			bullet4.move(0, 0.05);
+		//		}
+		//		if (bullet4.getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+		//		{
+		//			//player health reduced by 1
+		//		}
+
+
+		//		 //ANDYS LEFT HAND WORKS WHEN R IS PRESSED, SWITCH TO A TIMED EVENT LATER
+//		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && lhand.getPosition() == sf::Vector2f(-600, -600))
+//		{
+//			lhand.setPosition(sf::Vector2f(-10,spaceship.getPosition().y));
+//			lhand.move(0.06, 0);
+//		}
+//		if (!lhand.isInbounds('r') || lhand.getPosition().x < -100)
+//		{
+//			lhand.setPosition(sf::Vector2f(-600, -600));
+//			lhand_moving_right = 1;
+//		}
+//		if (lhand.getPosition() != sf::Vector2f(-600, -600))
+//		{
+//			if(lhand_moving_right == 1)
+//				lhand.move(0.06, 0);
+//			else
+//				lhand.move(-0.06,0);
+//		}
+//		if (lhand.getPosition().x > 280)
+//		{
+//			lhand_moving_right = 0;
+//		}
+
 		window.draw(bullet1);
 		window.draw(spaceship);
 		window.display();
