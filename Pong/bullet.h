@@ -10,8 +10,7 @@ class Bullet : public sf::CircleShape
 {
 public:
 	Bullet(const double& newRadius, const sf::Color& newColor,
-		const sf::Vector2f& newPosition, int newhp = 1) :
-		sf::CircleShape(newRadius)
+		const sf::Vector2f& newPosition, int newhp = 1) : sf::CircleShape(newRadius)
 	{
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
