@@ -6,6 +6,7 @@
 #include "mainShip.h"
 #include "Alien.h"
 #include "Andy.h"
+#include <time.h>
 
 using std::vector;
 
@@ -56,6 +57,12 @@ private:
 
 void RunApp::run_app()
 {
+	srand(time(0));
+	int yum = 0;
+	int z = 0;
+	int p = 0;
+	int c = 0;
+	int shootthebulletfromaliens = 0;
 	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 	spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
@@ -203,12 +210,17 @@ void RunApp::run_app()
 
 		if (aliensdead < 48)
 		{
+			c = rand();
+			if (c > 16300)
+				shootthebulletfromaliens = 1;
+			else
+				shootthebulletfromaliens = 0;
 			
-			int x = 3; //rand() % 48
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
+			if (shootthebulletfromaliens == 1 && Bulletlist[yum].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
 			{
-				float tempbugx = alienlist[x].getPosition().x;
-				float tempbugy = alienlist[x].getPosition().y;
+				yum = rand() % 48;
+				float tempbugx = alienlist[yum].getPosition().x;
+				float tempbugy = alienlist[yum].getPosition().y;
 				float tempssx = spaceship.getPosition().x + 12.5;
 				float tempssy = spaceship.getPosition().y + 12.5;
 
@@ -219,26 +231,34 @@ void RunApp::run_app()
 
 				movex = xval / normal;
 				movey = yval / normal;
-				Bulletlist[x].setPosition(alienlist[x].getPosition());
-				Bulletlist[x].move(0.05 * movex, 0.05 * movey);
+				Bulletlist[yum].setPosition(alienlist[yum].getPosition());
+				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
 			}
-			if (!Bulletlist[x].isInbounds('d'))
+			if (!Bulletlist[yum].isInbounds('d'))
 			{
-				Bulletlist[x].setPosition(sf::Vector2f(-600, -600));
+				Bulletlist[yum].setPosition(sf::Vector2f(-600, -600));
 			}
 
-			if (Bulletlist[x].getPosition() != sf::Vector2f(-600, -600))
+			if (Bulletlist[yum].getPosition() != sf::Vector2f(-600, -600))
 			{
-				Bulletlist[x].move(0.05 * movex, 0.05 * movey);
+				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
 			}
-			if (Bulletlist[x].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+			if (Bulletlist[yum].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
 			{
 				//player health reduced by 1
 			}
 
-			x = 4;
-			float tempbugx = Bulletlist[x].getPosition().x;
-			float tempbugy = alienlist[x].getPosition().y;
+			
+			float moveyh = 0;
+			float movexh = 0;
+			if (shootthebulletfromaliens == 1 && Bulletlist[z].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[z].getPosition() == sf::Vector2f(-600, -600))
+			{
+				z = rand() % 48;
+				Bulletlist[z].setPosition(alienlist[z].getPosition());
+				Bulletlist[z].move(0.02 * movexh, 0.05 * moveyh);
+			}
+			float tempbugx = Bulletlist[z].getPosition().x;
+			float tempbugy = alienlist[z].getPosition().y;
 			float tempssx = spaceship.getPosition().x + 12.5;
 			float tempssy = spaceship.getPosition().y + 12.5;
 
@@ -247,44 +267,39 @@ void RunApp::run_app()
 
 			float normal = sqrt(pow(xval, 2) + pow(yval, 2));
 
-			float movexh = xval / normal;
-			float moveyh = yval / normal;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
+			movexh = xval / normal;
+			moveyh = yval / normal;
+			if (!Bulletlist[z].isInbounds('d'))
 			{
-				
-				Bulletlist[x].setPosition(alienlist[x].getPosition());
-				Bulletlist[x].move(0.05 * movexh, 0.05 * moveyh);
-			}
-			if (!Bulletlist[x].isInbounds('d'))
-			{
-				Bulletlist[x].setPosition(sf::Vector2f(-600, -600));
+				Bulletlist[z].setPosition(sf::Vector2f(-600, -600));
 			}
 
-			if (Bulletlist[x].getPosition() != sf::Vector2f(-600, -600))
+			if (Bulletlist[z].getPosition() != sf::Vector2f(-600, -600))
 			{
-				Bulletlist[x].move(0.05 * movexh, 0.05 * moveyh);
+				Bulletlist[z].move(0.05 * movexh, 0.04 * moveyh);
 			}
-			if (Bulletlist[x].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+			if (Bulletlist[z].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
 			{
 				//player health reduced by 1
 			}
 
-			x = 5;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
+			
+			if (shootthebulletfromaliens == 1 && Bulletlist[p].getPosition() == sf::Vector2f(-600, -600))
 			{
-				Bulletlist[x].setPosition(alienlist[x].getPosition());
-				Bulletlist[x].move(0, 0.05);
+				p = rand() % 48;
+				Bulletlist[p].setPosition(alienlist[p].getPosition());
+				Bulletlist[p].move(0, 0.05);
 			}
-			if (!Bulletlist[x].isInbounds('d'))
+			if (!Bulletlist[p].isInbounds('d'))
 			{
-				Bulletlist[x].setPosition(sf::Vector2f(-600, -600));
+				Bulletlist[p].setPosition(sf::Vector2f(-600, -600));
 			}
 
-			if (Bulletlist[x].getPosition() != sf::Vector2f(-600, -600))
+			if (Bulletlist[p].getPosition() != sf::Vector2f(-600, -600))
 			{
-				Bulletlist[x].move(0, 0.05);
+				Bulletlist[p].move(0, 0.05);
 			}
-			if (Bulletlist[x].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
+			if (Bulletlist[p].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
 			{
 				//player health reduced by 1
 			}
