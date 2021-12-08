@@ -1,10 +1,11 @@
 #pragma once
-
 #include "bullet.h"
 
 class spaceShip : public sf::CircleShape
 {
 public:
+	spaceShip();
+	~spaceShip();
 	spaceShip(const double& newRadius, const sf::Color& newColor,
 		const sf::Vector2f& newPosition) : sf::CircleShape(newRadius)
 	{
@@ -21,6 +22,16 @@ public:
 private:
 	// double mRadius;
 };
+
+spaceShip::spaceShip()
+{
+
+}
+
+spaceShip::~spaceShip()
+{
+
+}
 
 bool spaceShip::isInbounds(char side)
 {

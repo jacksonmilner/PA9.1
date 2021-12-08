@@ -6,6 +6,12 @@
 
 #include <SFML/Graphics.hpp>
 #include "runApp.h"
+#include "mainShip.h"
+#include "Alien.h"
+#include "bullet.h"
+#include "runApp.h"
+#include <math.h>
+#define Pi 3.14159265
 
 int main()
 {
@@ -15,6 +21,10 @@ int main()
 	//bool previousShootKeyState;
 	//spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	//Bullet bullet1(5, sf::Color::Yellow, spaceship.getPosition() + sf::Vector2f(15 / 2, -18), 1);
+	//sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
+	//bool previousShootKeyState;
+	//spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
+	//Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600,600));
 
 	//int getsize = window.getSize().x / 14;
 	//int get13 = 13;
@@ -36,6 +46,18 @@ int main()
 	//Alien bug11(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 400), 1);
 	//Alien bug12(10, sf::Color::Blue, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 400), 1);
 
+	//Alien bee1(10, sf::Color::Magenta, sf::Vector2f((0) + getsize, window.getSize().y - 430), 2);
+	//Alien bee2(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 430), 2);
+	//Alien bee3(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 430), 2);
+	//Alien bee4(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 430), 2);
+	//Alien bee5(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 430), 2);
+	//Alien bee6(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 430), 2);
+	//Alien bee7(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 430), 2);
+	//Alien bee8(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 430), 2);
+	//Alien bee9(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 430), 2);
+	//Alien bee10(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 430), 2);
+	//Alien bee11(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 430), 2);
+	//Alien bee12(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 430), 2);
 	//Alien bee1(10, sf::Color::Magenta, sf::Vector2f((0) + getsize, window.getSize().y - 430), 2);
 	//Alien bee2(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 430), 2);
 	//Alien bee3(10, sf::Color::Magenta, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 430), 2);
@@ -98,7 +120,7 @@ int main()
 	//		spaceship.move(-0.11, 0);
 	//	}
 
-	//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.isInbounds('u') && bullet1.getHP() != 0)
+	//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.getPosition() == sf::Vector2f(600,600))
 	//	{
 	//		bullet1.setPosition(spaceship.getPosition());
 	//		bullet1.move(0, -0.4);
@@ -124,11 +146,107 @@ int main()
 	//		int tempy = bug1.getPosition().y;
 	//		sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
 
+	//Alien alien1(10, sf::Color::Red, sf::Vector2f((0) + getsize, window.getSize().y - 460), 3);
+	//Alien alien2(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 460), 3);
+	//Alien alien3(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 460), 3);
+	//Alien alien4(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 460), 3);
+	//Alien alien5(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 460), 3);
+	//Alien alien6(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 460), 3);
+	//Alien alien7(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 460), 3);
+	//Alien alien8(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 460), 3);
+	//Alien alien9(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 460), 3);
+	//Alien alien10(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 460), 3);
+	//Alien alien11(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 460), 3);
+	//Alien alien12(10, sf::Color::Red, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 460), 3);
+	//		bug1.move(0.5*z, 0.5*y); //bug moving
+
+	//Alien enemy1(10, sf::Color::Green, sf::Vector2f((0) + getsize, window.getSize().y - 490), 4);
+	//Alien enemy2(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize, window.getSize().y - 490), 4);
+	//Alien enemy3(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 2, window.getSize().y - 490), 4);
+	//Alien enemy4(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 3, window.getSize().y - 490), 4);
+	//Alien enemy5(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 4, window.getSize().y - 490), 4);
+	//Alien enemy6(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 5, window.getSize().y - 490), 4);
+	//Alien enemy7(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 6, window.getSize().y - 490), 4);
+	//Alien enemy8(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 7, window.getSize().y - 490), 4);
+	//Alien enemy9(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 8, window.getSize().y - 490), 4);
+	//Alien enemy10(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 9, window.getSize().y - 490), 4);
+	//Alien enemy11(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 10, window.getSize().y - 490), 4);
+	//Alien enemy12(10, sf::Color::Green, sf::Vector2f(((window.getSize().x) / get13) + getsize * 11, window.getSize().y - 490), 4); // do not delete
+	//	}
+	//	if (bug1.getPosition().x == 300)
+	//	{
+
+	//double x = (Pi/2); //bug moving
+	//
+	//while (window.isOpen())
+	//{
+	//	double z = cos((x / 1000) * Pi); //bug moving
+	//	double y = sin((x / 1000) * Pi); //bug moving
+	//	//window.clear();
+	//	sf::Event event;
+	//	while (window.pollEvent(event))
+	//	{
+	//		if (event.type == sf::Event::Closed)
+	//			window.close();
+	//	}
+
+	//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && spaceship.isInbounds('r'))
+	//	{
+	//		spaceship.move(0.11, 0);
+	//	}
+	//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && spaceship.isInbounds('l'))
+	//	{
+	//		spaceship.move(-0.11, 0);
+	//	}
+	//	}
+	//	
+	//	window.draw(spaceship);
+	//	if (bug1.getHP() != 0)
+	//		window.draw(bug1);
+	//	window.draw(bullet1);
+	//	window.display();
+	//	window.clear();
+	//	x++; //bug moving
+	//}
+
+	/*srand(static_cast<unsigned>(time(0)));
+
+	//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.isInbounds('u') && bullet1.getHP() != 0)
+	//	{
+	//		bullet1.setPosition(spaceship.getPosition());
+	//		bullet1.move(0, -0.4);
+	//	}
+	//	if (!bullet1.isInbounds('u'))
+	//	{
+	//		bullet1.setPosition(sf::Vector2f(600,600));
+	//	}
+	//	if (bullet1.getPosition() != sf::Vector2f(600, 600))
+	//	{
+	//		bullet1.move(0, -0.4);
+	//	}
+	//	if (bug1.getGlobalBounds().intersects(bullet1.getGlobalBounds()))
+	//	{
+	//		if (bug1.getHP() == 1)
+	//		{
+	//			bug1.hit();
+	//		}
+	//	}
+	//	if (bug1.getPosition().x != 300)
+	//	{
+	//		int tempx = bug1.getPosition().x;
+	//		int tempy = bug1.getPosition().y;
+	//		sf::Vector2f(bug1.getPosition().x, bug1.getPosition().y);
+	RunApp bruh;
+
 	//		bug1.move(0.5*z, 0.5*y); //bug moving
 
 	//	}
 	//	if (bug1.getPosition().x == 300)
 	//	{
+	while (bruh.isRunning())
+	{
+		 
+	}*/
 
 	//	}
 	//	
@@ -425,6 +543,24 @@ int main()
 //		window.clear();
 //		x++; //bug moving
 //	}
-//>>>>>>> ac6596904cbefee900f37413a32686e67a237274
-	return 0;
+sf::RenderWindow window{ sf::VideoMode(800,600), "The game!" };
+sf::Texture t;
+//i.loadFromFile(/"Image.png");
+t.loadFromFile("ANDYYY.jpg");
+//t.loadFromImage(i);
+sf::Sprite s(t);
+while (window.isOpen())
+{
+	sf::Event windowEvent;
+	while (window.pollEvent(windowEvent))
+	{
+		if (windowEvent.type == sf::Event::Closed)
+			window.close();
+	}
+	window.clear(sf::Color::White);
+
+	window.draw(s);
+	window.display();
+}
+return 0;
 }
