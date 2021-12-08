@@ -38,6 +38,9 @@
     <ClInclude Include="spaceShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mainMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image.png">
@@ -68,9 +71,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="enemy4.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="ANDYYY.jpg">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png">

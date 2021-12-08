@@ -20,18 +20,6 @@ public:
 	}
 	RunApp();
 	~RunApp();
-
-	void setScore(int newscore)
-	{
-		mscore = newscore;
-	}
-	int getScore()
-	{
-		return mscore;
-	}
-
-	void run_app();
-
 	void initWindow();
 	void initVars();
 	void update();
@@ -39,6 +27,14 @@ public:
 	bool isRunning();
 	void inputCheck();
 	void printStartScreen();
+
+	void setScore(int newscore);
+	int getScore()
+	{
+		return mscore;
+	}
+
+	void run_app();
 private:
 	int mscore;
 	sf::RenderWindow* mWindow;
@@ -46,12 +42,81 @@ private:
 	sf::Event mEvent;
 	spaceShip mPlayer;
 	bool gameRunning;
-	int score;
-
-
 
 	std::vector<Alien> alienlist;
 };
+
+RunApp::RunApp()
+{
+	initWindow();
+	initVars();
+}
+
+RunApp::~RunApp()
+{
+	delete mWindow;
+	mWindow = nullptr;
+}
+
+void RunApp::initWindow()
+{
+	mVideoMode = sf::VideoMode(500, 500);
+	mWindow = new sf::RenderWindow(mVideoMode, "Invaders");
+}
+
+void RunApp::initVars()
+{
+	return;
+}
+
+void RunApp::update()
+{
+	inputCheck();
+}
+
+void RunApp::render()
+{
+	mWindow->clear();
+
+
+	mWindow->display();
+}
+
+bool RunApp::isRunning()
+{
+	gameRunning = mWindow->isOpen();
+	return gameRunning;
+}
+
+void RunApp::inputCheck()
+{
+	while (mWindow->pollEvent(mEvent))
+	{
+		switch (mEvent.type)
+		{
+		case sf::Event::Closed:
+			mWindow->close();
+			break;
+		case sf::Event::KeyPressed:
+			if (mEvent.key.code == )
+		default:
+			break;
+		}
+	}
+}
+
+void RunApp::printStartScreen()
+{
+	if (gameRunning == true)
+	{
+
+	}
+}
+
+void RunApp::setScore(int newscore)
+{
+	mscore = newscore;
+}
 
 void RunApp::run_app()
 {
@@ -276,70 +341,3 @@ void RunApp::run_app()
 }
 
 
-
-RunApp::RunApp()
-{
-	initWindow();
-	initVars();
-}
-
-RunApp::~RunApp()
-{
-	delete mWindow;
-	mWindow = nullptr;
-}
-
-void RunApp::initWindow()
-{
-	mVideoMode = sf::VideoMode(500, 500);
-	mWindow = new sf::RenderWindow(mVideoMode, "Invaders");
-}
-
-void RunApp::initVars()
-{
-	return;
-}
-
-void RunApp::update()
-{
-	inputCheck();
-}
-
-void RunApp::render()
-{
-	mWindow->clear();
-
-
-	mWindow->display();
-}
-
-bool RunApp::isRunning()
-{
-	gameRunning = mWindow->isOpen();
-	return gameRunning;
-}
-
-void RunApp::inputCheck()
-{
-	while (mWindow->pollEvent(mEvent))
-	{
-		switch (mEvent.type)
-		{
-		case sf::Event::Closed:
-			{
-			mWindow->close();
-			break;
-			}
-		default:
-			break;
-		}
-	}
-}
-
-void RunApp::printStartScreen()
-{
-	if (gameRunning == true)
-	{
-
-	}
-}
