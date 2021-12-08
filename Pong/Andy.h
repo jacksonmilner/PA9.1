@@ -22,8 +22,8 @@ private:
 void Andy::updateHealthBar()
 {
 	int x = 0;
-	x = healthBar.getSize().x;
-	healthBar.setSize(sf::Vector2f(x-20, 30));
+	x = healthBar.getSize().x - 10;
+	healthBar.setSize(sf::Vector2f(x, 30));
 }
 
 sf::RectangleShape Andy::getHealthBar()

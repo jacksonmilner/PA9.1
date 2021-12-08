@@ -147,11 +147,13 @@ void RunApp::run_app()
 			if (andy.hit(bullet1))
 			{
 				bullet1.setPosition(sf::Vector2f(600, 600));
+				andy.updateHealthBar();
 			};
 		}
 		if (gameState == 1 && andy.getHP() > 0)
 		{
 			window.draw(andy);
+			window.draw(andy.getHealthBar());
 		}
 		for (int i = 0; i <= alienlist.size() - 1; i++)
 		{
