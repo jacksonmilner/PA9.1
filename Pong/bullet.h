@@ -10,18 +10,27 @@ class Bullet : public sf::CircleShape
 {
 public:
 	Bullet(const double& newRadius, const sf::Color& newColor,
-		const sf::Vector2f& newPosition, int newhp = 1) : sf::CircleShape(newRadius)
+		const sf::Vector2f& newPosition) : sf::CircleShape(newRadius)
 	{
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
-		hp = newhp;
 	}
+	~Bullet();
 	bool isInbounds(char side);
-	int getHP();
+	void update();
+	void render(sf::RenderTarget* target);
 
 private:
-	int hp;
+	bool mHitSomething;
+	sf::Vector2f mDirection;
+	float mMovementSpeed;
+
 };
+
+Bullet::~Bullet()
+{
+
+}
 
 bool Bullet::isInbounds(char side)
 {
@@ -41,7 +50,12 @@ bool Bullet::isInbounds(char side)
 	return false;
 }
 
-int Bullet::getHP()
+void Bullet::update()
 {
-	return hp;
+
+}
+
+void Bullet::render(sf::RenderTarget* target)
+{
+	target->draw(*this);
 }

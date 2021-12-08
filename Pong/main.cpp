@@ -11,6 +11,7 @@
 //#include "Alien.h"
 //#include "bullet.h"
 #include "runApp.h"
+#include "runAppCleaned.h"
 #include <math.h>
 #define Pi 3.14159265
 
@@ -18,7 +19,7 @@ int main()
 {
 	int response = 1;
 	RunApp spaceshipgame(0);
-	//RunApp spaceshipgameCleaned;
+	RunApp2 spaceshipgameCleaned;
 	while (response != 3)
 	{
 		std::cout << "Welcome to your doom" << std::endl;
@@ -28,8 +29,8 @@ int main()
 		std::cin >> response;
 		if (response == 1)
 		{
-			spaceshipgame.run_app();
-			//spaceshipgameCleaned.testrun_app();
+			spaceshipgameCleaned.testrun_app();
+			//spaceshipgame.run_app();
 			system("cls");
 			std::cout << "You have completed our game. Thank You for playing." << std::endl 
 				 << "Contributers: Jackson Milner, Bradley Cruz, Owen Ryan, Rodrigo Martinez" << std::endl << std::endl;

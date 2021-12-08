@@ -1,6 +1,4 @@
 #pragma once
-#include "mainShip.h"
-#include "spaceShip.h"
 
 class Alien : public sf::CircleShape
 {
@@ -17,9 +15,11 @@ public:
 
 	void setHP();
 	int getHP();
+	bool hit(Bullet* shot);
 	bool hit(Bullet shot);
-	void shoot(spaceShip2* player);
-
+	void shoot1(spaceShip* player);
+	void shoot2(spaceShip* player);
+	void shoot3(spaceShip* player);
 private:
 	int type;
 	int hp;
@@ -65,6 +65,16 @@ int Alien::getHP()
 	return hp;
 }
 
+bool Alien::hit(Bullet* shot)
+{
+	if (this->getGlobalBounds().intersects(shot->getGlobalBounds()) && hp != 0)
+	{
+		hp--;
+		return true;
+	}
+	return false;
+}
+
 bool Alien::hit(Bullet shot)
 {
 	if (this->getGlobalBounds().intersects(shot.getGlobalBounds()) && hp != 0)
@@ -74,7 +84,98 @@ bool Alien::hit(Bullet shot)
 	}
 	return false;
 }
-void Alien::shoot(spaceShip2* player)
-{
 
+void Alien::shoot1(spaceShip* player)
+{
+	Bullet* bullet = new Bullet(5, sf::Color::Yellow, this->getPosition());
+
+	if (hp != 0)
+	{
+		float tempbugx = this->getPosition().x;
+		float tempbugy = this->getPosition().y;
+		float tempssx = player->getPosition().x + 12.5;
+		float tempssy = player->getPosition().y + 12.5;
+
+		float xval = tempssx - tempbugx;
+		float yval = tempssy - tempbugy;
+
+		float normal = sqrt((xval * xval) + (yval * yval));
+
+		float movex = xval / normal;
+		float movey = yval / normal;
+
+		while (bullet != nullptr)
+		{
+			bullet->move(0.05 * movex, 0.05 * movey);
+			if (bullet->isInbounds('d'))
+			{
+				delete bullet;
+				bullet = nullptr;
+			}
+		}
+	}
+}
+
+void Alien::shoot2(spaceShip* player)
+{
+	Bullet* bullet = new Bullet(5, sf::Color::Yellow, this->getPosition());
+
+	if (hp != 0)
+	{
+		float tempbugx = bullet->getPosition().x;
+		float tempbugy = this->getPosition().y;
+		float tempssx = player->getPosition().x + 12.5;
+		float tempssy = player->getPosition().y + 12.5;
+
+		float xval = tempssx - tempbugx;
+		float yval = tempssy - tempbugy;
+
+		float normal = sqrt((xval * xval) + (yval * yval));
+
+		float movex = xval / normal;
+		float movey = yval / normal;
+	
+		while (bullet != nullptr)
+		{
+			bullet->move(0.1 * movex, 0.04 * movey);
+			if (bullet->isInbounds('d'))
+			{
+				delete bullet;
+				bullet = nullptr;
+			}
+		}
+	}
+}
+
+void Alien::shoot3(spaceShip* player)
+{
+	Bullet* bullet = new Bullet(5, sf::Color::Yellow, this->getPosition());
+
+	if (hp != 0)
+	{
+		float tempbugx = this->getPosition().x;
+		float tempbugy = this->getPosition().y;
+		float tempssx = player->getPosition().x + 12.5;
+		float tempssy = player->getPosition().y + 12.5;
+
+		float xval = tempssx - tempbugx;
+		float yval = tempssy - tempbugy;
+
+		float normal = sqrt((xval * xval) + (yval * yval));
+
+		float movex = xval / normal;
+		float movey = yval / normal;
+		bullet->setPosition(this->getPosition());
+		bullet->move(0.05 * movex, 0.05 * movey);
+
+		while (bullet != nullptr)
+		{
+			bullet->move(0, 0.05);
+			if (bullet->isInbounds('d'))
+			{
+				delete bullet;
+				bullet = nullptr;
+			}
+		}
+	}
 }
