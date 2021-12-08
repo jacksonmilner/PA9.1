@@ -59,10 +59,17 @@ void RunApp::run_app()
 {
 	srand(time(0));
 	int yum = 0;
-	int z = 0;
-	int p = 0;
-	int c = 0;
+	int zap = 0;
+	int pop = 0;
+	int rap = 0;
+	int hat = 0;
+	int counterup = 0;
 	int shootthebulletfromaliens = 0;
+	int shootthebulletfromaliens1 = 0;
+	int shootthebulletfromaliens2 = 0;
+	int shootthebulletfromaliens3 = 0;
+	int shootthebulletfromaliens4 = 0;
+
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Your Doom!");
 	spaceShip spaceship(15, sf::Color::Black, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
@@ -117,15 +124,20 @@ void RunApp::run_app()
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
+			{
+				window.clear();
 				window.close();
+			}
 		}
 		if (spaceship.getHP() == 0)
 		{
 			std::cout << std::endl << "You have perished" << std::endl;
+			window.clear();
 			window.close();
 		}
 		if (andy.getHP() == 0)
 		{
+			window.clear();
 			window.close();
 		}
 
@@ -220,29 +232,44 @@ void RunApp::run_app()
 
 		if (aliensdead < 48)
 		{
-			c = rand(); //SET C = C+1; AND THEN IT TAKES LIKE 20 SECONDS FOR C TO BE OVER 32000
-			if (c > 32000)
+			
+			counterup++;
+			if (counterup > 5000)
+			{
 				shootthebulletfromaliens = 1;
-			else
-				shootthebulletfromaliens = 0;
+			}
+			if (counterup > 10000)
+			{
+				shootthebulletfromaliens1 = 1;
+			}
+			if (counterup > 15000)
+			{
+				shootthebulletfromaliens2 = 1;
+				shootthebulletfromaliens3 = 1;
+				shootthebulletfromaliens4 = 1;
+			}
+
 			
 			if (shootthebulletfromaliens == 1 && Bulletlist[yum].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
 			{
 				yum = rand() % 48;
-				float tempbugx = alienlist[yum].getPosition().x;
-				float tempbugy = alienlist[yum].getPosition().y;
-				float tempssx = spaceship.getPosition().x + 12.5;
-				float tempssy = spaceship.getPosition().y + 12.5;
+				if (alienlist[yum].getHP() > 0) 
+				{
+					float tempbugx = alienlist[yum].getPosition().x;
+					float tempbugy = alienlist[yum].getPosition().y;
+					float tempssx = spaceship.getPosition().x + 12.5;
+					float tempssy = spaceship.getPosition().y + 12.5;
 
-				float xval = tempssx - tempbugx;
-				float yval = tempssy - tempbugy;
+					float xval = tempssx - tempbugx;
+					float yval = tempssy - tempbugy;
 
-				float normal = sqrt(pow(xval, 2) + pow(yval, 2));
+					float normal = sqrt((xval*xval) + (yval*yval));
 
-				movex = xval / normal;
-				movey = yval / normal;
-				Bulletlist[yum].setPosition(alienlist[yum].getPosition()); 
-				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
+					movex = xval / normal;
+					movey = yval / normal;
+					Bulletlist[yum].setPosition(alienlist[yum].getPosition()); 
+					Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
+				}
 			}
 			if (!Bulletlist[yum].isInbounds('d'))
 			{
@@ -252,68 +279,126 @@ void RunApp::run_app()
 			{
 				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
 			}
-			for (int i = 0; i < Bulletlist.size() - 1; i++)
-				spaceship.hit(Bulletlist[i]);
+			//for (int i = 0; i < Bulletlist.size() - 1; i++)
+				//spaceship.hit(Bulletlist[i]);
 
 			float moveyh = 0;
 			float movexh = 0;
-			if (shootthebulletfromaliens == 1 && Bulletlist[z].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[z].getPosition() == sf::Vector2f(-600, -600))
+			if (shootthebulletfromaliens1 == 1 && Bulletlist[zap].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[zap].getPosition() == sf::Vector2f(-600, -600))
 			{
-				z = rand() % 48;
-				Bulletlist[z].setPosition(alienlist[z].getPosition());
-				Bulletlist[z].move(0.02 * movexh, 0.05 * moveyh);
+				zap = rand() % 48;
+				if (alienlist[zap].getHP() > 0)
+				{
+					Bulletlist[zap].setPosition(alienlist[zap].getPosition());
+					Bulletlist[zap].move(0.1 * movexh, 0.04 * moveyh);
+				}
 			}
-			float tempbugx = Bulletlist[z].getPosition().x;
-			float tempbugy = alienlist[z].getPosition().y;
+			float tempbugx = Bulletlist[zap].getPosition().x;
+			float tempbugy = alienlist[zap].getPosition().y;
 			float tempssx = spaceship.getPosition().x + 12.5;
 			float tempssy = spaceship.getPosition().y + 12.5;
 
 			float xval = tempssx - tempbugx;
 			float yval = tempssy - tempbugy;
 
-			float normal = sqrt(pow(xval, 2) + pow(yval, 2));
+			float normal = sqrt((xval * xval) + (yval * yval));
 
 			movexh = xval / normal;
 			moveyh = yval / normal;
-			if (!Bulletlist[z].isInbounds('d'))
+			if (!Bulletlist[zap].isInbounds('d'))
 			{
-				Bulletlist[z].setPosition(sf::Vector2f(-600, -600));
+				Bulletlist[zap].setPosition(sf::Vector2f(-600, -600));
 			}
 
-			if (Bulletlist[z].getPosition() != sf::Vector2f(-600, -600))
+			if (Bulletlist[zap].getPosition() != sf::Vector2f(-600, -600))
 			{
-				Bulletlist[z].move(0.05 * movexh, 0.04 * moveyh);
+				Bulletlist[zap].move(0.1 * movexh, 0.04 * moveyh);
 			}
-			for (int i = 0; i < Bulletlist.size() - 1; i++)
-				spaceship.hit(Bulletlist[i]);
+			//for (int i = 0; i < Bulletlist.size() - 1; i++)
+				//spaceship.hit(Bulletlist[i]);
 
 			
-			if (shootthebulletfromaliens == 1 && Bulletlist[p].getPosition() == sf::Vector2f(-600, -600))
+			if (shootthebulletfromaliens2 == 1 && Bulletlist[pop].getPosition() == sf::Vector2f(-600, -600))
 			{
-				p = rand() % 48;
-				Bulletlist[p].setPosition(alienlist[p].getPosition());
-				Bulletlist[p].move(0, 0.05);
+				pop = rand() % 48;
+				if (alienlist[pop].getHP() > 0)
+				{
+					Bulletlist[pop].setPosition(alienlist[pop].getPosition());
+					Bulletlist[pop].move(0, 0.05);
+				}
 			}
-			if (!Bulletlist[p].isInbounds('d'))
+			if (!Bulletlist[pop].isInbounds('d'))
 			{
-				Bulletlist[p].setPosition(sf::Vector2f(-600, -600));
+				Bulletlist[pop].setPosition(sf::Vector2f(-600, -600));
 			}
 
-			if (Bulletlist[p].getPosition() != sf::Vector2f(-600, -600))
+			if (Bulletlist[pop].getPosition() != sf::Vector2f(-600, -600))
 			{
-				Bulletlist[p].move(0, 0.05);
+				Bulletlist[pop].move(0, 0.05);
 			}
+			//for (int i = 0; i < Bulletlist.size() - 1; i++)
+				//spaceship.hit(Bulletlist[i]);
+
+
+			if (shootthebulletfromaliens3 == 1 && Bulletlist[hat].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
+			{
+				hat = rand() % 48;
+				if (alienlist[hat].getHP() > 0)
+				{
+					float tempbugx = alienlist[hat].getPosition().x;
+					float tempbugy = alienlist[hat].getPosition().y;
+					float tempssx = spaceship.getPosition().x + 12.5;
+					float tempssy = spaceship.getPosition().y + 12.5;
+
+					float xval = tempssx - tempbugx;
+					float yval = tempssy - tempbugy;
+
+					float normal = sqrt(pow(xval, 2) + pow(yval, 2));
+
+					movex = xval / normal;
+					movey = yval / normal;
+					Bulletlist[hat].setPosition(alienlist[hat].getPosition());
+					Bulletlist[hat].move(0.05 * movex, 0.05 * movey);
+				}
+			}
+			if (!Bulletlist[hat].isInbounds('d'))
+			{
+				Bulletlist[hat].setPosition(sf::Vector2f(-600, -600));
+			}
+			if (Bulletlist[hat].getPosition() != sf::Vector2f(-600, -600))
+			{
+				Bulletlist[hat].move(0.05 * movex, 0.05 * movey);
+			}
+
+			if (shootthebulletfromaliens2 == 1 && Bulletlist[rap].getPosition() == sf::Vector2f(-600, -600))
+			{
+				rap = rand() % 48;
+				if (alienlist[rap].getHP() > 0)
+				{
+					Bulletlist[rap].setPosition(alienlist[rap].getPosition());
+					Bulletlist[rap].move(0, 0.05);
+				}
+			}
+			if (!Bulletlist[rap].isInbounds('d'))
+			{
+				Bulletlist[rap].setPosition(sf::Vector2f(-600, -600));
+			}
+
+			if (Bulletlist[rap].getPosition() != sf::Vector2f(-600, -600))
+			{
+				Bulletlist[rap].move(0, 0.05);
+			}
+
 			for (int i = 0; i < Bulletlist.size() - 1; i++)
 				spaceship.hit(Bulletlist[i]);
 		}
-		//		BULLET THAT TRACKS WORKS WITH Q, CHANGE TO TIMED EVENT, IF ALL THE TEMP BUG AND XVAL AND NORMAL AND MOVEX/Y ARE MOVED TO THE OUTSIDE ITLL TRACK THE PLAYER
-				
-
-
-		//		PRESS E, SWITCH TO A TIMED EVENT LATER
-				
-
-
+		else
+		{
+			for (int i = 0; i < Bulletlist.size() - 1; i++)
+			{
+				Bulletlist[i].setFillColor(sf::Color::Transparent);
+			}
+		}
 		//		 //ANDYS LEFT HAND WORKS WHEN R IS PRESSED, SWITCH TO A TIMED EVENT LATER
 		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::R) && lhand.getPosition() == sf::Vector2f(-600, -600))
 		//{
