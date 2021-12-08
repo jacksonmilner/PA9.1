@@ -166,6 +166,7 @@
     <ClInclude Include="mainShip.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png" />
     <Image Include="bug1.png" />
     <Image Include="bug2.png" />
     <Image Include="bug3.png" />
