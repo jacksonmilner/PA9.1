@@ -178,6 +178,7 @@
     <Image Include="enemy4.png" />
     <Image Include="Image.png" />
     <Image Include="ship.png" />
+    <Image Include="Space-Free-PNG-Image.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

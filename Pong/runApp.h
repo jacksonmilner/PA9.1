@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include <math.h>
 #include <vector>
 #include "bullet.h"
@@ -50,7 +51,6 @@ private:
 	int score;
 
 
-
 	std::vector<Alien> alienlist;
 	std::vector<Bullet> Bulletlist;
 };
@@ -63,9 +63,12 @@ void RunApp::run_app()
 	int p = 0;
 	int c = 0;
 	int shootthebulletfromaliens = 0;
-	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
-	spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
+	sf::RenderWindow window(sf::VideoMode(500, 500), "Your Doom!");
+	spaceShip spaceship(15, sf::Color::Black, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
+	sf::Texture t;
+	t.loadFromFile("Space-Free-PNG-Image.png");
+	sf::Sprite background(t);
 	//Bullet bullet2(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
 	//Bullet bullet4(5, sf::Color::Yellow, sf::Vector2f(-600, -600), 1);
 	int lhand_moving_right = 1;
@@ -110,12 +113,18 @@ void RunApp::run_app()
 	{
 		int aliensdead = 0;
 		sf::Event event;
+		window.draw(background);
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
 		if (spaceship.getHP() == 0)
+		{
+			std::cout << std::endl << "You have perished" << std::endl;
+			window.close();
+		}
+		if (andy.getHP() == 0)
 		{
 			window.close();
 		}
@@ -243,6 +252,8 @@ void RunApp::run_app()
 			{
 				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
 			}
+			for (int i = 0; i < Bulletlist.size() - 1; i++)
+				spaceship.hit(Bulletlist[i]);
 
 			float moveyh = 0;
 			float movexh = 0;
@@ -329,6 +340,7 @@ void RunApp::run_app()
 		//window.draw(lhand);
 		//window.draw(bullet4);
 		//window.draw(bullet2);
+		
 		window.draw(bullet1);
 		window.draw(spaceship);
 		window.display();

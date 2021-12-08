@@ -70,10 +70,10 @@
     <Image Include="enemy4.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="ANDYYY.jpg">
+    <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png">
+    <Image Include="Space-Free-PNG-Image.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
