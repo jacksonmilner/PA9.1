@@ -19,7 +19,7 @@ void TestAndy::testSpray()
 	sf::Sprite background(t);
 	int andy_timer = 0;
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
-	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 50);
+	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 150);
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -29,11 +29,11 @@ void TestAndy::testSpray()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		if (spaceship.getHP() == 0)
+		/*if (spaceship.getHP() == 0)
 		{
 			std::cout << std::endl << "You have perished" << std::endl;
 			window.close();
-		}
+		}*/
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && spaceship.isInbounds('r'))
 		{
 			spaceship.move(0.11, 0);
