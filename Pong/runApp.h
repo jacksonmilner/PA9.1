@@ -210,8 +210,8 @@ void RunApp::run_app()
 
 		if (aliensdead < 48)
 		{
-			c = rand();
-			if (c > 16300)
+			c = rand(); //SET C = C+1; AND THEN IT TAKES LIKE 20 SECONDS FOR C TO BE OVER 32000
+			if (c > 32000)
 				shootthebulletfromaliens = 1;
 			else
 				shootthebulletfromaliens = 0;
@@ -231,14 +231,13 @@ void RunApp::run_app()
 
 				movex = xval / normal;
 				movey = yval / normal;
-				Bulletlist[yum].setPosition(alienlist[yum].getPosition());
+				Bulletlist[yum].setPosition(alienlist[yum].getPosition()); 
 				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
 			}
 			if (!Bulletlist[yum].isInbounds('d'))
 			{
 				Bulletlist[yum].setPosition(sf::Vector2f(-600, -600));
 			}
-
 			if (Bulletlist[yum].getPosition() != sf::Vector2f(-600, -600))
 			{
 				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
