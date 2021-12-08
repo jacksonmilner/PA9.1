@@ -121,7 +121,8 @@ void RunApp::run_app()
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.getPosition() == sf::Vector2f(600, 600))
 		{
-			bullet1.setPosition(spaceship.getPosition());
+			sf::Vector2f center = sf::Vector2f(spaceship.getPosition().x + 11, spaceship.getPosition().y);
+			bullet1.setPosition(center);
 			bullet1.move(0, -0.4);
 		}
 		if (!bullet1.isInbounds('u'))
