@@ -11,6 +11,8 @@ int main()
 {
 	RunApp spaceshipgame(0);
 	spaceshipgame.run_app();
+	return 0;
+
 ////sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 	//bool previousShootKeyState;
 	//spaceShip spaceship(15, sf::Color::Yellow, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));

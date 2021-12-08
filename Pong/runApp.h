@@ -48,7 +48,6 @@ void RunApp::run_app()
 	int x2 = -1;
 	int x3 = -1;
 	int x4 = -1;
-	int aliensdead = 0;
 	bool bosstime = false;
 
 	int x = window.getSize().x / 14;
@@ -64,6 +63,7 @@ void RunApp::run_app()
 
 	while (window.isOpen())
 	{
+		int aliensdead = 0;
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -121,7 +121,7 @@ void RunApp::run_app()
 		{
 			bullet1.move(0, -0.4);
 		}
-		for (int i = 0; i < alienlist.size() - 1; i++)
+		for (int i = 0; i < alienlist.size(); i++)
 		{
 			if (alienlist[i].hit(bullet1))
 			{
@@ -129,7 +129,7 @@ void RunApp::run_app()
 			}
 		}
 		
-		for (int i = 0; i < alienlist.size() - 1; i++)
+		for (int i = 0; i < alienlist.size(); i++)
 		{
 			if (alienlist[i].getHP() == 0)
 				aliensdead++;
