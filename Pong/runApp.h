@@ -115,6 +115,11 @@ void RunApp::run_app()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+		if (spaceship.getHP() == 0)
+		{
+			window.close();
+		}
+
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && spaceship.isInbounds('r'))
 		{
@@ -238,12 +243,7 @@ void RunApp::run_app()
 			{
 				Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
 			}
-			if (Bulletlist[yum].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
-			{
-				//player health reduced by 1
-			}
 
-			
 			float moveyh = 0;
 			float movexh = 0;
 			if (shootthebulletfromaliens == 1 && Bulletlist[z].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[z].getPosition() == sf::Vector2f(-600, -600))
@@ -273,10 +273,8 @@ void RunApp::run_app()
 			{
 				Bulletlist[z].move(0.05 * movexh, 0.04 * moveyh);
 			}
-			if (Bulletlist[z].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
-			{
-				//player health reduced by 1
-			}
+			for (int i = 0; i < Bulletlist.size() - 1; i++)
+				spaceship.hit(Bulletlist[i]);
 
 			
 			if (shootthebulletfromaliens == 1 && Bulletlist[p].getPosition() == sf::Vector2f(-600, -600))
@@ -294,10 +292,8 @@ void RunApp::run_app()
 			{
 				Bulletlist[p].move(0, 0.05);
 			}
-			if (Bulletlist[p].getGlobalBounds().intersects(spaceship.getGlobalBounds()))
-			{
-				//player health reduced by 1
-			}
+			for (int i = 0; i < Bulletlist.size() - 1; i++)
+				spaceship.hit(Bulletlist[i]);
 		}
 		//		BULLET THAT TRACKS WORKS WITH Q, CHANGE TO TIMED EVENT, IF ALL THE TEMP BUG AND XVAL AND NORMAL AND MOVEX/Y ARE MOVED TO THE OUTSIDE ITLL TRACK THE PLAYER
 				
@@ -350,8 +346,7 @@ RunApp::RunApp()
 
 RunApp::~RunApp()
 {
-	delete mWindow;
-	mWindow = nullptr;
+
 }
 
 void RunApp::initWindow()

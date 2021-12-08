@@ -11,8 +11,14 @@ public:
 	{
 		this->setFillColor(newColor);
 		this->setPosition(newPosition);
+		hp = 1;
 	}
 	bool isInbounds(char side);
+	bool hit(Bullet shot);
+	int getHP()
+	{
+		return hp;
+	}
 	
 	virtual void shoot()
 	{
@@ -21,7 +27,18 @@ public:
 
 private:
 	// double mRadius;
+	int hp;
 };
+
+bool spaceShip::hit(Bullet shot)
+{
+	if (this->getGlobalBounds().intersects(shot.getGlobalBounds()) && hp != 0)
+	{
+		hp--;
+		return true;
+	}
+	return false;
+}
 
 spaceShip::spaceShip()
 {
