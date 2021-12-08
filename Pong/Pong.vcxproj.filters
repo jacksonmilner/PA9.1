@@ -13,6 +13,7 @@
     <ClInclude Include="spaceShip.h" />
     <ClInclude Include="bullet2.h" />
     <ClInclude Include="resources.h" />
+    <ClInclude Include="runAppCleaned.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png" />

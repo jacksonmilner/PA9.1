@@ -16,15 +16,15 @@ public:
 
 private:
 	sf::CircleShape mShape;
-	float mMovespd;
+	//float mMovespd;
 	void initShape();
-	void initVariables();
+//	void initVariables();
 	void setPos(sf::Vector2f bruh);
 };
 
 spaceShip2::spaceShip2()
 {
-
+	initShape();
 }
 
 spaceShip2::spaceShip2(sf::Vector2f coords)
@@ -50,11 +50,11 @@ void spaceShip2::initShape()
 	mShape.setRadius(15);
 	mShape.setPosition(sf::Vector2f(250, 410));
 }
-
-void spaceShip2::initVariables()
-{
-
-}
+//
+//void spaceShip2::initVariables()
+//{
+//
+//}
 
 void spaceShip2::setPos(sf::Vector2f bruh)
 {
