@@ -214,7 +214,7 @@ void RunApp::run_app()
 		}
 		
 
-		gameState = 1; //ERASE LATER
+		//gameState = 1; //ERASE LATER
 		if (gameState == 1)
 		{
 			if (andy.hit(bullet1))
@@ -244,9 +244,13 @@ void RunApp::run_app()
 			{
 				if (andy.getPosition().y == -25)
 				{
+
 					if (andy.getAmmo()[5].getPosition().y < 250)
 					{
-						andy.spray();
+						if (andy.getAmmo()[7].getPosition().x == -600)
+						{
+							andy.spray();
+						}
 						andy.getAmmo()[5].move(-0.06, 0.07);
 						andy.getAmmo()[6].move(-0.03, 0.07);
 						andy.getAmmo()[7].move(0, 0.07);

@@ -7,12 +7,9 @@ public:
 		const sf::Vector2f& newPosition, const int& type = 50) : Alien(newRadius, sf::Color::White, newPosition, type)
 	{
 		healthBar.setFillColor(sf::Color::Red);
-		healthBar.setPosition(sf::Vector2f(0, 10));
-		healthBar.setSize(sf::Vector2f(500, 25));
-		for (int i = 0; i < 10; i++)
 		healthBar.setPosition(sf::Vector2f(100, 10));
 		healthBar.setSize(sf::Vector2f(300, 25));
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			ammo.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(600, 600)));
 		}
