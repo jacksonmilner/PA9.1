@@ -10,6 +10,9 @@ public:
 		healthBar.setPosition(sf::Vector2f(0, 10));
 		healthBar.setSize(sf::Vector2f(500, 25));
 		for (int i = 0; i < 10; i++)
+		healthBar.setPosition(sf::Vector2f(100, 10));
+		healthBar.setSize(sf::Vector2f(300, 25));
+		for (int i = 0; i < 5; i++)
 		{
 			ammo.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(600, 600)));
 		}
@@ -33,7 +36,7 @@ private:
 void Andy::updateHealthBar()
 {
 	int x = 0;
-	x = healthBar.getSize().x - 10;
+	x = healthBar.getSize().x - 2;
 	healthBar.setSize(sf::Vector2f(x, 30));
 }
 
