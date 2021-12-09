@@ -16,17 +16,64 @@
     <ClInclude Include="alienLine.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png" />
-    <Image Include="bug1.png" />
-    <Image Include="bug2.png" />
-    <Image Include="bug3.png" />
-    <Image Include="bug4.png" />
-    <Image Include="enemy1.png" />
-    <Image Include="enemy2.png" />
-    <Image Include="enemy3.png" />
-    <Image Include="enemy4.png" />
-    <Image Include="Image.png" />
-    <Image Include="ship.png" />
-    <Image Include="Space-Free-PNG-Image.png" />
+    <ClInclude Include="bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mainShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="runApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Alien.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Andy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spaceShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testAndy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bug1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bug2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bug3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bug4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ship.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemy1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemy2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemy3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemy4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Space-Free-PNG-Image.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

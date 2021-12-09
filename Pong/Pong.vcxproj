@@ -169,6 +169,7 @@
     <ClInclude Include="mainShip.h" />
     <ClInclude Include="runAppCleaned.h" />
     <ClInclude Include="spaceShip.h" />
+    <ClInclude Include="testAndy.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png" />
