@@ -17,9 +17,9 @@
 
 int main()
 {
-	TestAndy test;
-	test.testSpray();
-	int response = 1;
+	//TestAndy test;
+	//test.testSpray();
+	int response = 0;
 	RunApp spaceshipgame(0);
 	while (response != 3)
 	{
