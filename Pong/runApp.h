@@ -115,9 +115,16 @@ void RunApp::run_app()
 	}
 	float movex = 0, movey = 0;
 	float movex1 = 0, movey1 = 0;
-	float moveyh = 0;
 	float movexh = 0;
-
+	float moveyh = 0;
+	
+	
+	float movexha1 = 0; 
+	float movexha2 = 0; 
+	float movexha3 = 0;
+	float movexha4 = 0;
+	float movexha5 = 0;
+	
 	while (window.isOpen())
 	{
 		int aliensdead = 0;
@@ -236,7 +243,7 @@ void RunApp::run_app()
 					andy.spray();
 				}
 			}
-			if ((andy_timer > 100000 && andy_timer < 101000)||(andy_timer % 50000 == 0 && andy_timer > 101000))
+			if (andy_timer > 100000 && andy_timer < 101000)//||(andy_timer % 50000 == 0 && andy_timer > 101000))
 			{
 				andy.setPosition(sf::Vector2f(window.getSize().x , window.getSize().y / 2 - 175)); // / 2 - 25
 			}
@@ -263,18 +270,54 @@ void RunApp::run_app()
 					}
 					else
 					{
-						andy.getAmmo()[5].move(0.07 * movexh, 0.05);
-						andy.getAmmo()[6].move(0.07 * movexh, 0.05);
-						andy.getAmmo()[7].move(0.07 * movexh, 0.05);
-						andy.getAmmo()[8].move(0.07 * movexh, 0.05);
-						andy.getAmmo()[9].move(0.07 * movexh, 0.05);
+						//calculate movexh
+						float tempbugx1 = andy.getAmmo()[5].getPosition().x;
+						float tempssx1 = spaceship.getPosition().x + 12.5;
+						float xval1 = tempssx1 - tempbugx1;
+						float normal1 = xval1/abs(xval1);
+						movexha1 = xval1 / normal1;
+
+						float tempbugx2 = andy.getAmmo()[6].getPosition().x;
+						float tempssx2 = spaceship.getPosition().x + 12.5;
+						float xval2 = tempssx2 - tempbugx2;
+						float normal2 = xval2 / abs(xval2);
+						movexha2 = xval2 / normal2;
+
+						float tempbugx3 = andy.getAmmo()[7].getPosition().x;
+						float tempssx3= spaceship.getPosition().x + 12.5;
+						float xval3 = tempssx3 - tempbugx3;
+						float normal3 = xval3 / abs(xval3);
+						movexha3 = xval3 / normal3;
+
+						float tempbugx4 = andy.getAmmo()[8].getPosition().x;
+						float tempssx4 = spaceship.getPosition().x + 12.5;
+						float xval4 = tempssx4 - tempbugx4;
+						float normal4 = xval4 / abs(xval4);
+						movexha4 = xval4 / normal4;
+
+						float tempbugx5 = andy.getAmmo()[9].getPosition().x;
+						float tempssx5 = spaceship.getPosition().x + 12.5;
+						float xval5 = tempssx5 - tempbugx5;
+						float normal5 = xval5 / abs(xval5);
+						movexha5 = xval5 / normal5;
+
+
+						andy.getAmmo()[5].move(0.1 * movexha1, 0.05);
+						andy.getAmmo()[6].move(0.1 * movexha2, 0.05);
+						andy.getAmmo()[7].move(0.1 * movexha3, 0.05);
+						andy.getAmmo()[8].move(0.1 * movexha4, 0.05);
+						andy.getAmmo()[9].move(0.1 * movexha5, 0.05);
 					}
 				}
 				else
 				{
 					andy.move(sin((andy_timer / 100) * (Pi / 10)),sin((andy_timer / 100) * (Pi / 10))*cos((andy_timer/100)*(Pi/10)));
+					if (andy_timer % 2500 == 0 && andy.getAmmo()[0].getPosition().y<-500)
+					{
+						andy.spray();
+					}
 				}
-				if (andy_timer % 25000 == 0 && andy_timer % 50000 != 0 && andy_timer > 130000)
+				if (andy_timer>125000)//(andy_timer % 25000 == 0 && andy_timer % 50000 != 0 && andy_timer > 110500)
 				{
 					andy.setPosition(sf::Vector2f(window.getSize().x / 2 - 25, -25));
 				}
