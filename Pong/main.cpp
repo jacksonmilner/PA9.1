@@ -1,17 +1,17 @@
-// This example will use SFML libraries to implement
-// the game of Pong
-
-// History: 4/16 - Started from the SFML tutorial code that draws
-//                a circle in the window.
-
+/************************************************************************
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*************************************************************************/
 #include <SFML/Graphics.hpp>
-//#include <iostream>
-//#include "runApp.h"
-//#include "mainShip.h"
-//#include "Alien.h"
-//#include "bullet.h"
 #include "runApp.h"
-#include "runAppCleaned.h"
 #include <math.h>
 #include "testAndy.h"
 #define Pi 3.14159265
@@ -22,7 +22,6 @@ int main()
 	test.testSpray();
 	int response = 1;
 	RunApp spaceshipgame(0);
-	RunApp2 spaceshipgameCleaned;
 	while (response != 3)
 	{
 		std::cout << "Welcome to your doom" << std::endl;
@@ -32,8 +31,6 @@ int main()
 		std::cin >> response;
 		if (response == 1)
 		{
-			spaceshipgameCleaned.testrun_app();
-			//spaceshipgame.run_app();
 			system("cls");
 			std::cout << "You have completed our game. Thank You for playing." << std::endl 
 				 << "Contributers: Jackson Milner, Bradley Cruz, Owen Ryan, Rodrigo Martinez" << std::endl << std::endl;

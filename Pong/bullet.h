@@ -21,9 +21,7 @@ public:
 	void render(sf::RenderTarget* target);
 
 private:
-	bool mHitSomething;
 	sf::Vector2f mDirection;
-	float mMovementSpeed;
 
 };
 
