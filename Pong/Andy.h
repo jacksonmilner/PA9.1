@@ -9,10 +9,14 @@ public:
 		healthBar.setFillColor(sf::Color::Red);
 		healthBar.setPosition(sf::Vector2f(100, 10));
 		healthBar.setSize(sf::Vector2f(300, 25));
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 10; i++)
 		{
-			ammo.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(600, 600)));
+			ammo.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(-600, -600)));
 		}
+	}
+	void move(float x, float y)
+	{
+		this->setPosition(sf::Vector2f(this->getPosition().x+x,this->getPosition().y+y));
 	}
 	void reload();
 	bool reloaded();
@@ -42,7 +46,7 @@ void Andy::spray()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		ammo[i].setPosition(this->getPosition());
+		ammo[i].setPosition(this->getPosition().x+25,this->getPosition().y+25);
 	}
 }
 bool Andy::reloaded()

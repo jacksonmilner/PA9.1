@@ -97,7 +97,7 @@ RunApp::RunApp()
 	Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
 
 
-	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 50);
+	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 150);
 
 	bool previousShootKeyState;
 	int getsize = (window.getSize().x - 240) / 12;
@@ -129,7 +129,17 @@ RunApp::RunApp()
 		Bulletlist.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(-600, -600))); //change color
 	}
 	float movex = 0, movey = 0;
-
+	float movex1 = 0, movey1 = 0;
+	float movexh = 0;
+	float moveyh = 0;
+	
+	
+	float movexha1 = 0; 
+	float movexha2 = 0; 
+	float movexha3 = 0;
+	float movexha4 = 0;
+	float movexha5 = 0;
+	
 	while (window.isOpen())
 	{
 		int aliensdead = 0;
@@ -226,7 +236,7 @@ RunApp::RunApp()
 		}
 		
 
-
+		//gameState = 1; //ERASE LATER
 		if (gameState == 1)
 		{
 			if (andy.hit(bullet1))
@@ -237,13 +247,96 @@ RunApp::RunApp()
 		}
 		if (gameState == 1 && andy.getHP() > 0) //&& andy.getHP()>stage2)
 		{
-			if (andy_timer % 10000 == 0)
+			if (andy_timer < 100000)
 			{
-				andy.setPosition(sf::Vector2f((rand() % (400 - 100 + 1) + 100), (rand() % (200 - 100 + 1) + 100)));
+				if (andy_timer % 10000 == 0)
+				{
+					andy.setPosition(sf::Vector2f((rand() % (400 - 100 + 1) + 100), (rand() % (200 - 100 + 1) + 100)));
+				}
+				if (andy_timer % 5000 == 0)
+				{
+					andy.spray();
+				}
 			}
-			if (andy_timer % 5000 == 0 )
+			if (andy_timer > 100000 && andy_timer < 101000)//||(andy_timer % 50000 == 0 && andy_timer > 101000))
 			{
-				andy.spray();
+				andy.setPosition(sf::Vector2f(window.getSize().x , window.getSize().y / 2 - 175)); // / 2 - 25
+			}
+			if (andy_timer > 101000)
+			{
+				if (andy.getPosition().y == -25)
+				{
+
+					if (andy.getAmmo()[5].getPosition().y < 250)
+					{
+						if (andy.getAmmo()[7].getPosition().x == -600)
+						{
+							andy.getAmmo()[5].setPosition(andy.getPosition());
+							andy.getAmmo()[6].setPosition(andy.getPosition());
+							andy.getAmmo()[7].setPosition(andy.getPosition());
+							andy.getAmmo()[8].setPosition(andy.getPosition());
+							andy.getAmmo()[9].setPosition(andy.getPosition());
+						}
+						andy.getAmmo()[5].move(-0.06, 0.07);
+						andy.getAmmo()[6].move(-0.03, 0.07);
+						andy.getAmmo()[7].move(0, 0.07);
+						andy.getAmmo()[8].move(0.03, 0.07);
+						andy.getAmmo()[9].move(0.06, 0.07);
+					}
+					else
+					{
+						//calculate movexh
+						float tempbugx1 = andy.getAmmo()[5].getPosition().x;
+						float tempssx1 = spaceship.getPosition().x + 12.5;
+						float xval1 = tempssx1 - tempbugx1;
+						float normal1 = xval1/abs(xval1);
+						movexha1 = xval1 / normal1;
+
+						float tempbugx2 = andy.getAmmo()[6].getPosition().x;
+						float tempssx2 = spaceship.getPosition().x + 12.5;
+						float xval2 = tempssx2 - tempbugx2;
+						float normal2 = xval2 / abs(xval2);
+						movexha2 = xval2 / normal2;
+
+						float tempbugx3 = andy.getAmmo()[7].getPosition().x;
+						float tempssx3= spaceship.getPosition().x + 12.5;
+						float xval3 = tempssx3 - tempbugx3;
+						float normal3 = xval3 / abs(xval3);
+						movexha3 = xval3 / normal3;
+
+						float tempbugx4 = andy.getAmmo()[8].getPosition().x;
+						float tempssx4 = spaceship.getPosition().x + 12.5;
+						float xval4 = tempssx4 - tempbugx4;
+						float normal4 = xval4 / abs(xval4);
+						movexha4 = xval4 / normal4;
+
+						float tempbugx5 = andy.getAmmo()[9].getPosition().x;
+						float tempssx5 = spaceship.getPosition().x + 12.5;
+						float xval5 = tempssx5 - tempbugx5;
+						float normal5 = xval5 / abs(xval5);
+						movexha5 = xval5 / normal5;
+
+
+						andy.getAmmo()[5].move(0.1 * movexha1, 0.05);
+						andy.getAmmo()[6].move(0.1 * movexha2, 0.05);
+						andy.getAmmo()[7].move(0.1 * movexha3, 0.05);
+						andy.getAmmo()[8].move(0.1 * movexha4, 0.05);
+						andy.getAmmo()[9].move(0.1 * movexha5, 0.05);
+					}
+				}
+				else
+				{
+					andy.move(sin((andy_timer / 100) * (Pi / 10)),sin((andy_timer / 100) * (Pi / 10))*cos((andy_timer/100)*(Pi/10)));
+					if (andy_timer % 2500 == 0 && andy.getAmmo()[0].getPosition().y<-500)
+					{
+						andy.spray();
+					}
+				}
+				if (andy_timer>125000)//(andy_timer % 25000 == 0 && andy_timer % 50000 != 0 && andy_timer > 110500)
+				{
+					andy.setPosition(sf::Vector2f(window.getSize().x / 2 - 25, -25));
+				}
+				//if(andy_timer % )
 			}
 			if (andy.getAmmo()[0].getPosition() != sf::Vector2f(-600,-600))
 			{
@@ -253,17 +346,17 @@ RunApp::RunApp()
 				andy.getAmmo()[3].move(0.03, 0.07);
 				andy.getAmmo()[4].move(0.06, 0.07);
 			}
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				if (!andy.getAmmo()[i].isInbounds('d'))
 				{
-					for (int i = 0; i < 5; i++)
+					for (int i = 0; i < 10; i++)
 					{
 						andy.getAmmo()[i].setPosition(sf::Vector2f(-600, -600));
 					}
 				}
 			}
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				window.draw(andy.getAmmo()[i]);
 				spaceship.hit(andy.getAmmo()[i]);
@@ -342,8 +435,7 @@ RunApp::RunApp()
 			//for (int i = 0; i < Bulletlist.size() - 1; i++)
 				//spaceship.hit(Bulletlist[i]);
 
-			float moveyh = 0;
-			float movexh = 0;
+			
 			if (shootthebulletfromaliens1 == 1 && Bulletlist[zap].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[zap].getPosition() == sf::Vector2f(-600, -600))
 			{
 				zap = rand() % 48;
@@ -415,10 +507,10 @@ RunApp::RunApp()
 
 					float normal = sqrt(pow(xval, 2) + pow(yval, 2));
 
-					movex = xval / normal;
-					movey = yval / normal;
+					movex1 = xval / normal;
+					movey1 = yval / normal;
 					Bulletlist[hat].setPosition(alienlist[hat].getPosition());
-					Bulletlist[hat].move(0.05 * movex, 0.05 * movey);
+					Bulletlist[hat].move(0.05 * movex1, 0.05 * movey1);
 				}
 			}
 			if (!Bulletlist[hat].isInbounds('d'))
@@ -427,10 +519,10 @@ RunApp::RunApp()
 			}
 			if (Bulletlist[hat].getPosition() != sf::Vector2f(-600, -600))
 			{
-				Bulletlist[hat].move(0.05 * movex, 0.05 * movey);
+				Bulletlist[hat].move(0.05 * movex1, 0.05 * movey1);
 			}
 
-			if (shootthebulletfromaliens2 == 1 && Bulletlist[rap].getPosition() == sf::Vector2f(-600, -600))
+			if (shootthebulletfromaliens4 == 1 && Bulletlist[rap].getPosition() == sf::Vector2f(-600, -600))
 			{
 				rap = rand() % 48;
 				if (alienlist[rap].getHP() > 0)
