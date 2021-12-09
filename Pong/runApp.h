@@ -249,7 +249,11 @@ void RunApp::run_app()
 					{
 						if (andy.getAmmo()[7].getPosition().x == -600)
 						{
-							andy.spray();
+							andy.getAmmo()[5].setPosition(andy.getPosition());
+							andy.getAmmo()[6].setPosition(andy.getPosition());
+							andy.getAmmo()[7].setPosition(andy.getPosition());
+							andy.getAmmo()[8].setPosition(andy.getPosition());
+							andy.getAmmo()[9].setPosition(andy.getPosition());
 						}
 						andy.getAmmo()[5].move(-0.06, 0.07);
 						andy.getAmmo()[6].move(-0.03, 0.07);
@@ -294,7 +298,7 @@ void RunApp::run_app()
 					}
 				}
 			}
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				window.draw(andy.getAmmo()[i]);
 				spaceship.hit(andy.getAmmo()[i]);
