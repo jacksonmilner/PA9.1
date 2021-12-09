@@ -292,7 +292,7 @@ void RunApp::run_app()
 			{
 				if (!andy.getAmmo()[i].isInbounds('d'))
 				{
-					for (int i = 0; i < 5; i++)
+					for (int i = 0; i < 10; i++)
 					{
 						andy.getAmmo()[i].setPosition(sf::Vector2f(-600, -600));
 					}

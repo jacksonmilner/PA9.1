@@ -11,7 +11,7 @@ public:
 		healthBar.setSize(sf::Vector2f(300, 25));
 		for (int i = 0; i < 10; i++)
 		{
-			ammo.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(600, 600)));
+			ammo.push_back(Bullet(5, sf::Color::Yellow, sf::Vector2f(-600, -600)));
 		}
 	}
 	void move(float x, float y)
