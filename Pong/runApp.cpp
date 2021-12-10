@@ -162,6 +162,7 @@ void RunApp::run_app()
 		if (aliensdead == 48)
 		{
 			gameState = 1;
+
 		}
 
 
@@ -297,13 +298,7 @@ void RunApp::run_app()
 		//if (gameState == 1 && andy.getHP() > 0)// && andy.getHP() <= stage2)
 		//{
 
-		//}
-
-
-
-
-
-
+		//
 
 		for (int i = 0; i <= alienlist.size() - 1; i++)
 		{
