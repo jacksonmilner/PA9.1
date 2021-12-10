@@ -52,14 +52,14 @@ void Andy::spray()
 bool Andy::reloaded()
 {
 	int home = 0;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		if (ammo[i].getPosition() == sf::Vector2f(600, 600))
+		if (ammo[i].getPosition() == sf::Vector2f(-600, -600))
 		{
 			home++;
 		}
 	}
-	if (home == 5)
+	if (home == 10)
 	{
 		return true;
 	}
@@ -71,7 +71,7 @@ std::vector<Bullet>& Andy::getAmmo()
 }
 void Andy::reload()
 {
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		ammo[i].setPosition(sf::Vector2f(-600, -600));
 	}

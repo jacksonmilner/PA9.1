@@ -71,6 +71,7 @@ void RunApp::run_app()
 	int andy_timer = 0;
 
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Your Doom!");
+	window.setFramerateLimit(1000);
 	spaceShip spaceship(15, sf::Color::Black, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
 	sf::Texture t;
@@ -79,7 +80,6 @@ void RunApp::run_app()
 	int lhand_moving_right = 1;
 	Bullet lhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
 	Bullet rhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
-
 
 	Andy andy(25, sf::Color::Cyan, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 150);
 
@@ -219,8 +219,8 @@ void RunApp::run_app()
 			gameState = 1;
 		}
 
+		gameState = 1;
 
-		//gameState = 1; //ERASE LATER
 		if (gameState == 1)
 		{
 			if (andy.hit(bullet1))
@@ -301,11 +301,11 @@ void RunApp::run_app()
 						movexha5 = xval5 / normal5;
 
 
-						andy.getAmmo()[5].move(0.1 * movexha1, 0.05);
-						andy.getAmmo()[6].move(0.1 * movexha2, 0.05);
-						andy.getAmmo()[7].move(0.1 * movexha3, 0.05);
-						andy.getAmmo()[8].move(0.1 * movexha4, 0.05);
-						andy.getAmmo()[9].move(0.1 * movexha5, 0.05);
+						andy.getAmmo()[5].move(0.03 * movexha1, 0.05);
+						andy.getAmmo()[6].move(0.03 * movexha2, 0.05);
+						andy.getAmmo()[7].move(0.03 * movexha3, 0.05);
+						andy.getAmmo()[8].move(0.03 * movexha4, 0.05);
+						andy.getAmmo()[9].move(0.03 * movexha5, 0.05);
 					}
 				}
 				else
@@ -349,10 +349,7 @@ void RunApp::run_app()
 			window.draw(andy.getHealthBar());
 			andy_timer++;
 		}
-		//if (gameState == 1 && andy.getHP() > 0)// && andy.getHP() <= stage2)
-		//{
-
-		//}
+		
 
 
 
@@ -392,18 +389,18 @@ void RunApp::run_app()
 				yum = rand() % 48;
 				if (alienlist[yum].getHP() > 0)
 				{
-					float tempbugx = alienlist[yum].getPosition().x;
-					float tempbugy = alienlist[yum].getPosition().y;
-					float tempssx = spaceship.getPosition().x + 12.5;
-					float tempssy = spaceship.getPosition().y + 12.5;
+					float tempbugx2 = alienlist[yum].getPosition().x;
+					float tempbugy2 = alienlist[yum].getPosition().y;
+					float tempssx2 = spaceship.getPosition().x + 12.5;
+					float tempssy2 = spaceship.getPosition().y + 12.5;
 
-					float xval = tempssx - tempbugx;
-					float yval = tempssy - tempbugy;
+					float xval2 = tempssx2 - tempbugx2;
+					float yval2 = tempssy2 - tempbugy2;
 
-					float normal = sqrt((xval * xval) + (yval * yval));
+					float normal2 = sqrt((xval2 * xval2) + (yval2 * yval2));
 
-					movex = xval / normal;
-					movey = yval / normal;
+					movex = xval2 / normal2;
+					movey = yval2 / normal2;
 					Bulletlist[yum].setPosition(alienlist[yum].getPosition());
 					Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
 				}
@@ -429,18 +426,18 @@ void RunApp::run_app()
 					Bulletlist[zap].move(0.1 * movexh, 0.04 * moveyh);
 				}
 			}
-			float tempbugx = Bulletlist[zap].getPosition().x;
-			float tempbugy = alienlist[zap].getPosition().y;
-			float tempssx = spaceship.getPosition().x + 12.5;
-			float tempssy = spaceship.getPosition().y + 12.5;
+			float tempbugx1 = Bulletlist[zap].getPosition().x;
+			float tempbugy1 = alienlist[zap].getPosition().y;
+			float tempssx1 = spaceship.getPosition().x + 12.5;
+			float tempssy1 = spaceship.getPosition().y + 12.5;
 
-			float xval = tempssx - tempbugx;
-			float yval = tempssy - tempbugy;
+			float xval1 = tempssx1 - tempbugx1;
+			float yval1 = tempssy1 - tempbugy1;
 
-			float normal = sqrt((xval * xval) + (yval * yval));
+			float normal1 = sqrt((xval1 * xval1) + (yval1 * yval1));
 
-			movexh = xval / normal;
-			moveyh = yval / normal;
+			movexh = xval1 / normal1;
+			moveyh = yval1 / normal1;
 			if (!Bulletlist[zap].isInbounds('d'))
 			{
 				Bulletlist[zap].setPosition(sf::Vector2f(-600, -600));
