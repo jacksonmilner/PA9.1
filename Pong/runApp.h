@@ -56,8 +56,6 @@ private:
 
 void RunApp::run_app()
 {
-
-	
 	srand(time(0));
 	int yum = 0;
 	int zap = 0;
@@ -130,7 +128,15 @@ void RunApp::run_app()
 	{
 		int aliensdead = 0;
 		sf::Event event;
-
+		window.draw(background);
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window.clear();
+				window.close();
+			}
+		}
 		if (spaceship.getHP() == 0)
 		{
 			std::cout << std::endl << "You have perished" << std::endl;
@@ -533,14 +539,11 @@ void RunApp::run_app()
 		window.draw(lhand);
 		window.draw(bullet1);
 		window.draw(spaceship);
-		window.draw(background);
 		window.display();
 		window.clear();
 
 	}
 }
-
-
 
 RunApp::RunApp()
 {
@@ -549,7 +552,10 @@ RunApp::RunApp()
 
 RunApp::~RunApp()
 {
-
+	delete mWindow;
+	delete mPlayer;
+	mWindow = nullptr;
+	mPlayer = nullptr;
 }
 
 void RunApp::initWindow()
