@@ -1,4 +1,15 @@
-12/8 Tuesday
+Bradley C. SpaceInvader clone Logs
 
-Spontaneously thought to log my activities today
+12/8 Tuesday
+Spontaneously thought to log start logging my activities today
 Going to add a menu to the game window.
+
+12/9
+Morning- Yesterday, you fell asleep and did not finish the menu. Last night when you woke up, github was goin crazy
+and you spent about 4 hours on the problem probably unnecessarily. You need to get it together. By the end of today
+, you finish the menu and mess around with sprites.
+
+4:43
+You did not finish menu yet, coming close. Sprites may be a possible, think of adding one as a member of the 
+bullet/alien/etc and updating its position with the corresponding object in run_app();
+

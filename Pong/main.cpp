@@ -11,9 +11,14 @@
 *
 *************************************************************************/
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "runApp.h"
+#include "mainShip.h"
+#include "Alien.h"
+#include "bullet.h"
 #include "runApp.h"
 #include <math.h>
-#include "testAndy.h"
+#include "testCases.h"
 #define Pi 3.14159265
 
 int main()
@@ -31,9 +36,10 @@ int main()
 		std::cin >> response;
 		if (response == 1)
 		{
+			spaceshipgame.run_app();
 			system("cls");
-			std::cout << "You have completed our game. Thank You for playing." << std::endl 
-				 << "Contributers: Jackson Milner, Bradley Cruz, Owen Ryan, Rodrigo Martinez" << std::endl << std::endl;
+			std::cout << "You have completed our game. Thank You for playing." << std::endl
+				<< "Contributers: Jackson Milner, Bradley Cruz, Owen Ryan, Rodrigo Martinez" << std::endl << std::endl;
 			system("pause");
 			system("cls");
 		}

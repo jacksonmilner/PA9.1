@@ -16,7 +16,7 @@ public:
 	}
 	void move(float x, float y)
 	{
-		this->setPosition(sf::Vector2f(this->getPosition().x+x,this->getPosition().y+y));
+		this->setPosition(sf::Vector2f(this->getPosition().x + x, this->getPosition().y + y));
 	}
 	void reload();
 	bool reloaded();
@@ -46,7 +46,7 @@ void Andy::spray()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		ammo[i].setPosition(this->getPosition().x+25,this->getPosition().y+25);
+		ammo[i].setPosition(this->getPosition().x + 25, this->getPosition().y + 25);
 	}
 }
 bool Andy::reloaded()

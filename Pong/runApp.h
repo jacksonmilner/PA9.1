@@ -19,59 +19,45 @@ public:
 	RunApp(int score)
 	{
 		score = 0;
-		//render();
-	/*	initWindow();
-		initVars();*/
 	}
 	RunApp();
 	~RunApp();
 
-	void setScore(int newscore);
+	void setScore(int newscore)
+	{
+		mscore = newscore;
+	}
 	int getScore()
 	{
 		return mscore;
 	}
+
 	void run_app();
 
-
-
-	////BC TESTS
-	//void testrun_app();
-
-	//void initWindow();
-	//void initVars();
-	//void initTextures();
-
-	//void update();
-	//void render();
-	//bool isRunning();
+	void initWindow();
+	void initVars();
+	void update();
 	void pollEventUpdate();
-	void updateBullets();
-	//void inputUpdate();
-	//void printStartScreen();
-
+	void render();
+	bool isRunning();
 
 private:
-	//BC TEST v
 	int mscore;
 	sf::RenderWindow* mWindow;
-	//sf::VideoMode mVideoMode;
 	sf::Event mEvent;
-	spaceShip mPlayer;
-	//spaceShip2 mtestPlayer;
-	//bool gameRunning;
+	spaceShip* mPlayer;
+	bool gameRunning;
+	int score;
 
-	sf::Texture* andy;
-	sf::Sprite boss;
-
-	//BC TEST ^
 
 	std::vector<Alien> alienlist;
 	std::vector<Bullet> Bulletlist;
 };
 
-RunApp::RunApp()
+void RunApp::run_app()
 {
+
+	
 	srand(time(0));
 	int yum = 0;
 	int zap = 0;
@@ -90,7 +76,7 @@ RunApp::RunApp()
 	spaceShip spaceship(15, sf::Color::Black, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
 	Bullet bullet1(5, sf::Color::Yellow, sf::Vector2f(600, 600), 1);
 	sf::Texture t;
-	t.loadFromFile("Space-Free-PNG-Image.png");
+	t.loadFromFile("resources/Space-Free-PNG-Image.png");
 	sf::Sprite background(t);
 	int lhand_moving_right = 1;
 	Bullet lhand(25, sf::Color::Yellow, sf::Vector2f(600, 600));
@@ -132,27 +118,19 @@ RunApp::RunApp()
 	float movex1 = 0, movey1 = 0;
 	float movexh = 0;
 	float moveyh = 0;
-	
-	
-	float movexha1 = 0; 
-	float movexha2 = 0; 
+
+
+	float movexha1 = 0;
+	float movexha2 = 0;
 	float movexha3 = 0;
 	float movexha4 = 0;
 	float movexha5 = 0;
-	
+
 	while (window.isOpen())
 	{
 		int aliensdead = 0;
 		sf::Event event;
-		window.draw(background);
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.clear();
-				window.close();
-			}
-		}
+
 		if (spaceship.getHP() == 0)
 		{
 			std::cout << std::endl << "You have perished" << std::endl;
@@ -201,8 +179,8 @@ RunApp::RunApp()
 		if (!alienlist[47].isInbounds('r'))
 			x4 *= -1;
 
-		
-		
+
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && bullet1.getPosition() == sf::Vector2f(600, 600))
 		{
 			sf::Vector2f center = sf::Vector2f(spaceship.getPosition().x + 11, spaceship.getPosition().y);
@@ -211,7 +189,7 @@ RunApp::RunApp()
 		}
 		if (!bullet1.isInbounds('u'))
 		{
-			bullet1.setPosition(sf::Vector2f(600,600));
+			bullet1.setPosition(sf::Vector2f(600, 600));
 		}
 		if (bullet1.getPosition() != sf::Vector2f(600, 600))
 		{
@@ -224,7 +202,7 @@ RunApp::RunApp()
 				bullet1.setPosition(sf::Vector2f(600, 600));
 			}
 		}
-		
+
 		for (int i = 0; i < alienlist.size(); i++)
 		{
 			if (alienlist[i].getHP() == 0)
@@ -234,7 +212,7 @@ RunApp::RunApp()
 		{
 			gameState = 1;
 		}
-		
+
 
 		//gameState = 1; //ERASE LATER
 		if (gameState == 1)
@@ -260,7 +238,7 @@ RunApp::RunApp()
 			}
 			if (andy_timer > 100000 && andy_timer < 101000)//||(andy_timer % 50000 == 0 && andy_timer > 101000))
 			{
-				andy.setPosition(sf::Vector2f(window.getSize().x , window.getSize().y / 2 - 175)); // / 2 - 25
+				andy.setPosition(sf::Vector2f(window.getSize().x, window.getSize().y / 2 - 175)); // / 2 - 25
 			}
 			if (andy_timer > 101000)
 			{
@@ -289,7 +267,7 @@ RunApp::RunApp()
 						float tempbugx1 = andy.getAmmo()[5].getPosition().x;
 						float tempssx1 = spaceship.getPosition().x + 12.5;
 						float xval1 = tempssx1 - tempbugx1;
-						float normal1 = xval1/abs(xval1);
+						float normal1 = xval1 / abs(xval1);
 						movexha1 = xval1 / normal1;
 
 						float tempbugx2 = andy.getAmmo()[6].getPosition().x;
@@ -299,7 +277,7 @@ RunApp::RunApp()
 						movexha2 = xval2 / normal2;
 
 						float tempbugx3 = andy.getAmmo()[7].getPosition().x;
-						float tempssx3= spaceship.getPosition().x + 12.5;
+						float tempssx3 = spaceship.getPosition().x + 12.5;
 						float xval3 = tempssx3 - tempbugx3;
 						float normal3 = xval3 / abs(xval3);
 						movexha3 = xval3 / normal3;
@@ -326,19 +304,19 @@ RunApp::RunApp()
 				}
 				else
 				{
-					andy.move(sin((andy_timer / 100) * (Pi / 10)),sin((andy_timer / 100) * (Pi / 10))*cos((andy_timer/100)*(Pi/10)));
-					if (andy_timer % 2500 == 0 && andy.getAmmo()[0].getPosition().y<-500)
+					andy.move(sin((andy_timer / 100) * (Pi / 10)), sin((andy_timer / 100) * (Pi / 10)) * cos((andy_timer / 100) * (Pi / 10)));
+					if (andy_timer % 2500 == 0 && andy.getAmmo()[0].getPosition().y < -500)
 					{
 						andy.spray();
 					}
 				}
-				if (andy_timer>125000)//(andy_timer % 25000 == 0 && andy_timer % 50000 != 0 && andy_timer > 110500)
+				if (andy_timer > 125000)//(andy_timer % 25000 == 0 && andy_timer % 50000 != 0 && andy_timer > 110500)
 				{
 					andy.setPosition(sf::Vector2f(window.getSize().x / 2 - 25, -25));
 				}
 				//if(andy_timer % )
 			}
-			if (andy.getAmmo()[0].getPosition() != sf::Vector2f(-600,-600))
+			if (andy.getAmmo()[0].getPosition() != sf::Vector2f(-600, -600))
 			{
 				andy.getAmmo()[0].move(-0.06, 0.07);
 				andy.getAmmo()[1].move(-0.03, 0.07);
@@ -367,7 +345,7 @@ RunApp::RunApp()
 		}
 		//if (gameState == 1 && andy.getHP() > 0)// && andy.getHP() <= stage2)
 		//{
-			
+
 		//}
 
 
@@ -385,7 +363,7 @@ RunApp::RunApp()
 
 		if (aliensdead < 48)
 		{
-			
+
 			counterup++;
 			if (counterup > 5000)
 			{
@@ -402,11 +380,11 @@ RunApp::RunApp()
 				shootthebulletfromaliens4 = 1;
 			}
 
-			
+
 			if (shootthebulletfromaliens == 1 && Bulletlist[yum].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[x].getPosition() == sf::Vector2f(-600, -600))
 			{
 				yum = rand() % 48;
-				if (alienlist[yum].getHP() > 0) 
+				if (alienlist[yum].getHP() > 0)
 				{
 					float tempbugx = alienlist[yum].getPosition().x;
 					float tempbugy = alienlist[yum].getPosition().y;
@@ -416,11 +394,11 @@ RunApp::RunApp()
 					float xval = tempssx - tempbugx;
 					float yval = tempssy - tempbugy;
 
-					float normal = sqrt((xval*xval) + (yval*yval));
+					float normal = sqrt((xval * xval) + (yval * yval));
 
 					movex = xval / normal;
 					movey = yval / normal;
-					Bulletlist[yum].setPosition(alienlist[yum].getPosition()); 
+					Bulletlist[yum].setPosition(alienlist[yum].getPosition());
 					Bulletlist[yum].move(0.05 * movex, 0.05 * movey);
 				}
 			}
@@ -435,7 +413,7 @@ RunApp::RunApp()
 			//for (int i = 0; i < Bulletlist.size() - 1; i++)
 				//spaceship.hit(Bulletlist[i]);
 
-			
+
 			if (shootthebulletfromaliens1 == 1 && Bulletlist[zap].getPosition() == sf::Vector2f(-600, -600)) // <-REPLACE WITH-> (when time is greater than something but less than something else && Bulletlist[zap].getPosition() == sf::Vector2f(-600, -600))
 			{
 				zap = rand() % 48;
@@ -469,7 +447,7 @@ RunApp::RunApp()
 			//for (int i = 0; i < Bulletlist.size() - 1; i++)
 				//spaceship.hit(Bulletlist[i]);
 
-			
+
 			if (shootthebulletfromaliens2 == 1 && Bulletlist[pop].getPosition() == sf::Vector2f(-600, -600))
 			{
 				pop = rand() % 48;
@@ -551,14 +529,22 @@ RunApp::RunApp()
 				Bulletlist[i].setFillColor(sf::Color::Transparent);
 			}
 		}
-		
+
 		window.draw(lhand);
 		window.draw(bullet1);
 		window.draw(spaceship);
+		window.draw(background);
 		window.display();
 		window.clear();
-		
+
 	}
+}
+
+
+
+RunApp::RunApp()
+{
+	initWindow();
 }
 
 RunApp::~RunApp()
@@ -566,10 +552,36 @@ RunApp::~RunApp()
 
 }
 
-void RunApp::setScore(int newscore)
+void RunApp::initWindow()
 {
-	mscore = newscore;
+	mWindow = new sf::RenderWindow(sf::VideoMode(500, 500), "Invaders");
 }
+
+void RunApp::initVars()
+{
+	score = 0;
+	mPlayer = new spaceShip(15, sf::Color::Black, sf::Vector2f(mWindow->getSize().x / 2, mWindow->getSize().y - 90));
+}
+
+void RunApp::update()
+{
+	pollEventUpdate();
+}
+
+void RunApp::render()
+{
+	mWindow->clear();
+
+
+	mWindow->display();
+}
+
+bool RunApp::isRunning()
+{
+	gameRunning = mWindow->isOpen();
+	return gameRunning;
+}
+
 
 void RunApp::pollEventUpdate()
 {

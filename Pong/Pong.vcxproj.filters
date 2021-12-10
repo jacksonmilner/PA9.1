@@ -10,20 +10,19 @@
     <ClInclude Include="mainMenu.h" />
     <ClInclude Include="runApp.h" />
     <ClInclude Include="mainShip.h" />
-    <ClInclude Include="testAndy.h" />
+    <ClInclude Include="testCases.h" />
+    <ClInclude Include="BC\bullet2.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\OneDrive\Pictures\andy_boss.png" />
-    <Image Include="bug1.png" />
-    <Image Include="bug2.png" />
-    <Image Include="bug3.png" />
-    <Image Include="bug4.png" />
-    <Image Include="enemy1.png" />
-    <Image Include="enemy2.png" />
-    <Image Include="enemy3.png" />
-    <Image Include="enemy4.png" />
-    <Image Include="Image.png" />
-    <Image Include="ship.png" />
-    <Image Include="Space-Free-PNG-Image.png" />
+    <Image Include="resources\andy_boss.png" />
+    <Image Include="resources\enemy1.png" />
+    <Image Include="resources\enemy2.png" />
+    <Image Include="resources\enemy3.png" />
+    <Image Include="resources\enemy4.png" />
+    <Image Include="resources\ship.png" />
+    <Image Include="resources\Space-Free-PNG-Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resources\ARCADECLASSIC.TTF" />
   </ItemGroup>
 </Project>

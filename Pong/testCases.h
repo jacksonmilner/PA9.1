@@ -1,16 +1,20 @@
 #pragma once
 #include "Andy.h"
-class TestAndy
+#include "mainMenu.h"
+
+class TestCases
 {
 public:
-	TestAndy();
+	TestCases();
 	void testSpray();
+	void testMenu();
 };
-TestAndy::TestAndy()
+TestCases::TestCases()
 {
 
 }
-void TestAndy::testSpray()
+
+void TestCases::testSpray()
 {
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Your Doom!");
 	spaceShip spaceship(15, sf::Color::Black, sf::Vector2f(window.getSize().x / 2, window.getSize().y - 90));
@@ -57,11 +61,11 @@ void TestAndy::testSpray()
 			bullet1.move(0, -0.4);
 		}
 
-			if (andy.hit(bullet1))
-			{
-				bullet1.setPosition(sf::Vector2f(600, 600));
-				andy.updateHealthBar();
-			};
+		if (andy.hit(bullet1))
+		{
+			bullet1.setPosition(sf::Vector2f(600, 600));
+			andy.updateHealthBar();
+		};
 
 		if (andy.getHP() > 0)
 		{
@@ -106,4 +110,11 @@ void TestAndy::testSpray()
 		window.clear();
 		andy_timer++;
 	}
+}
+
+void TestCases::testMenu()
+{
+	sf::RenderWindow menu(sf::VideoMode(500, 500), "Your Doom");
+	MainMenu(menu.getSize().x, menu.getSize().y);
+
 }
