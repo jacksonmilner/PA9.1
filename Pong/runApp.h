@@ -270,7 +270,7 @@ void RunApp::run_app()
 					else
 					{
 						//calculate movexh
-						float tempbugx1 = andy.getAmmo()[5].getPosition().x;
+						/*float tempbugx1 = andy.getAmmo()[5].getPosition().x;
 						float tempssx1 = spaceship.getPosition().x + 12.5;
 						float xval1 = tempssx1 - tempbugx1;
 						float normal1 = xval1 / abs(xval1);
@@ -298,14 +298,14 @@ void RunApp::run_app()
 						float tempssx5 = spaceship.getPosition().x + 12.5;
 						float xval5 = tempssx5 - tempbugx5;
 						float normal5 = xval5 / abs(xval5);
-						movexha5 = xval5 / normal5;
+						movexha5 = xval5 / normal5;*/
 
 
-						andy.getAmmo()[5].move(0.03 * movexha1, 0.05);
-						andy.getAmmo()[6].move(0.03 * movexha2, 0.05);
-						andy.getAmmo()[7].move(0.03 * movexha3, 0.05);
-						andy.getAmmo()[8].move(0.03 * movexha4, 0.05);
-						andy.getAmmo()[9].move(0.03 * movexha5, 0.05);
+						andy.getAmmo()[5].move(0, 0.05);
+						andy.getAmmo()[6].move(0, 0.05);
+						andy.getAmmo()[7].move(0, 0.05);
+						andy.getAmmo()[8].move(0, 0.05);
+						andy.getAmmo()[9].move(0, 0.05);
 					}
 				}
 				else
