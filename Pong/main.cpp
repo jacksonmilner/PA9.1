@@ -13,17 +13,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "runApp.h"
-#include "mainShip.h"
-#include "Alien.h"
-#include "bullet.h"
-#include "runApp.h"
-#include <math.h>
 #include "testCases.h"
 #define Pi 3.14159265
 
 int main()
 {
-	//TestAndy test;
+	//TestCases test;
 	//test.testSpray();
 	int response = 0;
 	RunApp spaceshipgame(0);

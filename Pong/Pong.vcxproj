@@ -156,12 +156,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="alien.cpp" />
+    <ClCompile Include="andy.cpp" />
+    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainMenu.cpp" />
+    <ClCompile Include="mainShip.cpp" />
+    <ClCompile Include="runApp.cpp" />
+    <ClCompile Include="testCases.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
     <ClInclude Include="Andy.h" />
-    <ClInclude Include="BC\bullet2.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="mainMenu.h" />
     <ClInclude Include="runApp.h" />
