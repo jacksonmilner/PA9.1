@@ -6,3 +6,6 @@ The spacebar is the shoot button. the enemies will shoot towards you
 One hit from an enemy will be Game Over
 
 game must be ran in release mode
+
+VIDEO LINK
+https://youtu.be/kfASAOec_Gs
